@@ -14,11 +14,13 @@ namespace MiPOSCSharpMySQL.Modelos
         Double precioProducto;
         int stockProducto;
         String descripcion;
+        DateTime fechaCaducidad;
 
         public long IdProducto { get => idProducto; set => idProducto = value; }
         public string NombreProducto { get => nombreProducto; set => nombreProducto = value; }
         public double PrecioProducto { get => precioProducto; set => precioProducto = value; }
         public int StockProducto { get => stockProducto; set => stockProducto = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
+        public DateTime FechaCaducidad {  get => fechaCaducidad; set =>  fechaCaducidad = value; }
     }
 }

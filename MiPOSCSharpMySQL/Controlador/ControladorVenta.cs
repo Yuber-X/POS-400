@@ -264,6 +264,11 @@ namespace MiPOSCSharpMySQL.Controlador
                     }
                 }
 
+
+
+
+
+
                 string nProducto = nombreProducto.Text;
                 double precioUnitario = double.Parse(precioProducto.Text);
                 int cantidad = int.Parse(cantidadProducto.Text);
@@ -280,7 +285,7 @@ namespace MiPOSCSharpMySQL.Controlador
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error al mostrar Datos" + e.ToString());
+                MessageBox.Show("Error al mostrar Datos: " + e.ToString());
             }
         }
         public void CalcularTotal(DataGridView tablaResumen, Label IVA, Label totalPagar)

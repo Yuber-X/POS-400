@@ -14,7 +14,7 @@ namespace MiPOSCSharpMySQL.Configuracion
 
         private static string usuario = "root";
         private static string contrasenia = "root";
-        private static string bd = "bdpos";
+        private static string bd = "bdposv2";
         private static string ip = "localhost";
         private static string puerto = "3306";
 

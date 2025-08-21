@@ -26,18 +26,18 @@ namespace MiPOSCSharpMySQL.Controlador
             modelo.Columns.Add("Precio", typeof(double));
             modelo.Columns.Add("Cantidad", typeof(int));
             modelo.Columns.Add("Descripcion", typeof(string));
+            modelo.Columns.Add("FechaCaducidad", typeof(DateTime));
 
 
             tablaTotalProductos.DataSource = modelo;
 
-            string sql = "select idProducto, nombre, precioProducto, stock, descripcionProducto from producto;";
+            string sql = "select idProducto, nombre, precioProducto, stock, descripcionProducto, fechaCaducidad from producto;";
 
             try
             {
                 MySqlConnection conexion = objetoConexion.estableceConexion();
 
                 MySqlCommand comando = new MySqlCommand(sql, conexion);
-
                 MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
 
                 DataSet ds = new DataSet();
@@ -54,7 +54,17 @@ namespace MiPOSCSharpMySQL.Controlador
                     objetoProducto.StockProducto = Convert.ToInt32(row["Stock"].ToString());
                     objetoProducto.Descripcion = row["descripcionProducto"].ToString();
 
-                    modelo.Rows.Add(objetoProducto.IdProducto, objetoProducto.NombreProducto, objetoProducto.PrecioProducto, objetoProducto.StockProducto, objetoProducto.Descripcion);
+                    if (row.IsNull("fechaCaducidad"))
+                        objetoProducto.FechaCaducidad = Convert.ToDateTime()
+
+                    modelo.Rows.Add(
+                        objetoProducto.IdProducto, 
+                        objetoProducto.NombreProducto, 
+                        objetoProducto.PrecioProducto, 
+                        objetoProducto.StockProducto, 
+                        objetoProducto.Descripcion,
+                        fechaParaTabla
+                        );
                 }
 
                 tablaTotalProductos.DataSource = modelo;

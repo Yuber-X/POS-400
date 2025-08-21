@@ -46,6 +46,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.timeCad = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +76,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.timeCad);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtdescripcion);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.btnlimpiar);
@@ -90,14 +94,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(337, 407);
+            this.groupBox1.Size = new System.Drawing.Size(337, 416);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Producto";
             // 
             // txtdescripcion
             // 
-            this.txtdescripcion.Location = new System.Drawing.Point(104, 136);
+            this.txtdescripcion.Location = new System.Drawing.Point(104, 168);
             this.txtdescripcion.Multiline = true;
             this.txtdescripcion.Name = "txtdescripcion";
             this.txtdescripcion.Size = new System.Drawing.Size(227, 42);
@@ -116,7 +120,7 @@
             // btnlimpiar
             // 
             this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlimpiar.Location = new System.Drawing.Point(93, 350);
+            this.btnlimpiar.Location = new System.Drawing.Point(86, 359);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(155, 51);
             this.btnlimpiar.TabIndex = 11;
@@ -127,7 +131,7 @@
             // btneliminar
             // 
             this.btneliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btneliminar.Location = new System.Drawing.Point(172, 289);
+            this.btneliminar.Location = new System.Drawing.Point(172, 298);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(159, 55);
             this.btneliminar.TabIndex = 10;
@@ -138,7 +142,7 @@
             // btnmodificar
             // 
             this.btnmodificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnmodificar.Location = new System.Drawing.Point(10, 289);
+            this.btnmodificar.Location = new System.Drawing.Point(10, 298);
             this.btnmodificar.Name = "btnmodificar";
             this.btnmodificar.Size = new System.Drawing.Size(156, 55);
             this.btnmodificar.TabIndex = 9;
@@ -149,7 +153,7 @@
             // btnguardar
             // 
             this.btnguardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnguardar.Location = new System.Drawing.Point(10, 207);
+            this.btnguardar.Location = new System.Drawing.Point(10, 216);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(321, 76);
             this.btnguardar.TabIndex = 8;
@@ -190,7 +194,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 147);
+            this.label4.Location = new System.Drawing.Point(7, 178);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 18);
             this.label4.TabIndex = 3;
@@ -225,6 +229,23 @@
             this.label1.Size = new System.Drawing.Size(26, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(16, 138);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 18);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Caducidad:";
+            // 
+            // timeCad
+            // 
+            this.timeCad.Location = new System.Drawing.Point(104, 138);
+            this.timeCad.Name = "timeCad";
+            this.timeCad.Size = new System.Drawing.Size(200, 20);
+            this.timeCad.TabIndex = 15;
             // 
             // FormProductos
             // 
@@ -266,5 +287,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtdescripcion;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker timeCad;
     }
 }
