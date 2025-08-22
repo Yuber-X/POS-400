@@ -30,6 +30,8 @@ namespace MiPOSCSharpMySQL.Formularios
             txtStock.ReadOnly = true;
             txtPrecioVentaFinal.ReadOnly = true;
 
+            Controlador.NotificadorCaducidad.QuitarSilencioTemporal();
+
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
             objetoVenta.MostrarUltimaFactura(lbUltimaFactura);
 
@@ -116,7 +118,7 @@ namespace MiPOSCSharpMySQL.Formularios
         private void txtBuscarProducto_TextChanged(object sender, EventArgs e)
         {
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
-            objetoVenta.BuscarProductos(txtBuscarProducto ,dgvProducto);
+            objetoVenta.BuscarProductos(txtBuscarProducto, dgvProducto);
 
         }
 
@@ -146,7 +148,7 @@ namespace MiPOSCSharpMySQL.Formularios
         {
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
             objetoVenta.PasarProductosVenta(dgvCarrito, txtIdProducto, txtNombreProducto, txtPrecioVentaFinal, txtStockVenta, txtStock);
-            objetoVenta.CalcularTotal(dgvCarrito, lbIva,lbTotal);
+            objetoVenta.CalcularTotal(dgvCarrito, lbIva, lbTotal);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -186,7 +188,7 @@ namespace MiPOSCSharpMySQL.Formularios
 
             // Mostramos la última factura generada
             objetoVenta.MostrarUltimaFactura(lbUltimaFactura);
- 
+
             //Esperar que todos los datos se guarden correctamente
             await Task.Delay(1000);
 
@@ -199,32 +201,66 @@ namespace MiPOSCSharpMySQL.Formularios
             {
                 MessageBox.Show("Error al obtener el número de la última factura.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
+
         }
 
         private void VerificarProductosCaducidad()
         {
+            // 1) Si el usuario pidió "volver a avisar más tarde" en esta sesión, no avisamos más
+            if (Controlador.NotificadorCaducidad.SilenciadoTemporal)
+                return;
+
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
             try
             {
                 using (MySqlConnection conexion = objetoConexion.estableceConexion())
                 {
-                    string sql = @"SELECT COUNT(*) 
-                          FROM producto 
-                          WHERE fechaCaducidad IS NOT NULL
-                          AND TIMESTAMPDIFF(MONTH, CURDATE(), fechaCaducidad) <= 3;";
+                    // 2) Consultas por grupo
+                    string sql1Mes = @"SELECT COUNT(*) 
+                               FROM producto 
+                               WHERE fechaCaducidad IS NOT NULL
+                                 AND TIMESTAMPDIFF(MONTH, CURDATE(), fechaCaducidad) <= 1";
+                    int productos1Mes = Convert.ToInt32(new MySqlCommand(sql1Mes, conexion).ExecuteScalar());
 
-                    MySqlCommand comando = new MySqlCommand(sql, conexion);
-                    int productosCriticos = Convert.ToInt32(comando.ExecuteScalar());
+                    string sql3Meses = @"SELECT COUNT(*) 
+                                 FROM producto 
+                                 WHERE fechaCaducidad IS NOT NULL
+                                   AND TIMESTAMPDIFF(MONTH, CURDATE(), fechaCaducidad) <= 3
+                                   AND TIMESTAMPDIFF(MONTH, CURDATE(), fechaCaducidad) > 1";
+                    int productos3Meses = Convert.ToInt32(new MySqlCommand(sql3Meses, conexion).ExecuteScalar());
 
-                    if (productosCriticos > 0)
+                    // 3) Si aparecieron nuevos productos en alguno de los grupos, re-habilitamos ese grupo
+                    Controlador.NotificadorCaducidad.SincronizarCounters(productos1Mes, productos3Meses);
+
+                    // 4) Armamos un único mensaje solo para los grupos que NO estén ya "reconocidos"
+                    string mensaje = "";
+                    bool hayGrupo1 = (productos1Mes > 0) && !Controlador.NotificadorCaducidad.YaNotificado(1);
+                    bool hayGrupo3 = (productos3Meses > 0) && !Controlador.NotificadorCaducidad.YaNotificado(3);
+
+                    if (hayGrupo1) mensaje += $"⚠ Hay {productos1Mes} producto(s) que se caducan en ≤ 1 mes.\n";
+                    if (hayGrupo3) mensaje += $"⚠ Hay {productos3Meses} producto(s) que se caducan en ≤ 3 meses.\n";
+
+                    if (!string.IsNullOrEmpty(mensaje))
                     {
-                        MessageBox.Show($"⚠ Atención: Hay {productosCriticos} productos que se caducan en menos de 3 meses.",
-                                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    } else if (productosCriticos <= 1)
-                    {
-                        MessageBox.Show($"⚠ Atención: Hay {productosCriticos} productos que se caducan en este meses.",
-                                       "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        // 5) Un único MessageBox con Yes/No:
+                        // Yes = "Volver a avisar más tarde"   |   No = "OK"
+                        var result = MessageBox.Show(
+                            mensaje + "\n¿Volver a avisar más tarde?",
+                            "Advertencia - Caducidad",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            // Silencio temporal (esta sesión, hasta reabrir FormVentas)
+                            Controlador.NotificadorCaducidad.ActivarSilencioTemporal();
+                        }
+                        else
+                        {
+                            // Marcamos como reconocidos los grupos presentes (persistente)
+                            if (hayGrupo1) Controlador.NotificadorCaducidad.MarcarComoNotificado(1);
+                            if (hayGrupo3) Controlador.NotificadorCaducidad.MarcarComoNotificado(3);
+                        }
                     }
                 }
             }
@@ -237,7 +273,5 @@ namespace MiPOSCSharpMySQL.Formularios
                 objetoConexion.CerrarConexion();
             }
         }
-
-
     }
 }
