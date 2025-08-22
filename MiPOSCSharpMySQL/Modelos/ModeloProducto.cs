@@ -21,6 +21,6 @@ namespace MiPOSCSharpMySQL.Modelos
         public double PrecioProducto { get => precioProducto; set => precioProducto = value; }
         public int StockProducto { get => stockProducto; set => stockProducto = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
-        public DateTime FechaCaducidad {  get => fechaCaducidad; set =>  fechaCaducidad = value; }
+        public DateTime? FechaCaducidad {  get; set; }
     }
 }

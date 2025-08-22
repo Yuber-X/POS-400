@@ -121,6 +121,12 @@
     <Compile Include="Formularios\FormBuscarComprobante.Designer.cs">
       <DependentUpon>FormBuscarComprobante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FormCaducidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FormCaducidad.Designer.cs">
+      <DependentUpon>FormCaducidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FormClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormBuscarComprobante.resx">
       <DependentUpon>FormBuscarComprobante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FormCaducidad.resx">
+      <DependentUpon>FormCaducidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormClientes.resx">
       <DependentUpon>FormClientes.cs</DependentUpon>

@@ -74,7 +74,6 @@ namespace MiPOSCSharpMySQL
             MessageBox.Show("Llama a los siguientes encargados del sistema de ventas: Yuber Ern. Santana Polanco Whatsapp: Yuber Ern. Santana Lizardo Whatsapp: 849-438-0242");
 
         }
-
         private void AbrirFormulario(Form formularioHijo)
         {
             // Cerrar el formulario actual si hay uno abierto
@@ -90,6 +89,11 @@ namespace MiPOSCSharpMySQL
          // formularioHijo.Dock = DockStyle.Fill; // Hace que ocupe todo el espacio disponible
             formularioHijo.Show();
         }
-
+        private void caducidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Formularios.FormCaducidad objetoFormCaducidad = new Formularios.FormCaducidad();
+            AbrirFormulario(new FormCaducidad());
+            //objetoFormProductos.Show();
+        }
     }
 }

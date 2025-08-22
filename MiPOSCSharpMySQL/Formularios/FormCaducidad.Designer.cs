@@ -1,6 +1,6 @@
 ﻿namespace MiPOSCSharpMySQL.Formularios
 {
-    partial class FormProductos
+    partial class FormCaducidad
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProductos));
-            this.label5 = new System.Windows.Forms.Label();
-            this.dgvproductos = new System.Windows.Forms.DataGridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCaducidad));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpFechaCaducidad = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
@@ -38,8 +36,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnlimpiar = new System.Windows.Forms.Button();
             this.btneliminar = new System.Windows.Forms.Button();
-            this.btnmodificar = new System.Windows.Forms.Button();
-            this.btnguardar = new System.Windows.Forms.Button();
             this.txtstock = new System.Windows.Forms.TextBox();
             this.txtprecio = new System.Windows.Forms.TextBox();
             this.txtnombreproducto = new System.Windows.Forms.TextBox();
@@ -48,31 +44,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).BeginInit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dgvproductos = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(552, 2);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(223, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Seleccionar Registro para Modificar o Eliminar";
-            // 
-            // dgvproductos
-            // 
-            this.dgvproductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvproductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvproductos.Location = new System.Drawing.Point(355, 18);
-            this.dgvproductos.Name = "dgvproductos";
-            this.dgvproductos.ReadOnly = true;
-            this.dgvproductos.Size = new System.Drawing.Size(581, 401);
-            this.dgvproductos.TabIndex = 4;
-            this.dgvproductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellClick);
-            this.dgvproductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellContentClick);
             // 
             // groupBox1
             // 
@@ -82,8 +58,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.btnlimpiar);
             this.groupBox1.Controls.Add(this.btneliminar);
-            this.groupBox1.Controls.Add(this.btnmodificar);
-            this.groupBox1.Controls.Add(this.btnguardar);
             this.groupBox1.Controls.Add(this.txtstock);
             this.groupBox1.Controls.Add(this.txtprecio);
             this.groupBox1.Controls.Add(this.txtnombreproducto);
@@ -94,10 +68,10 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(337, 416);
-            this.groupBox1.TabIndex = 3;
+            this.groupBox1.Size = new System.Drawing.Size(337, 388);
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Producto";
+            this.groupBox1.Text = "Datos Producto Caducados";
             // 
             // dtpFechaCaducidad
             // 
@@ -137,9 +111,9 @@
             // btnlimpiar
             // 
             this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlimpiar.Location = new System.Drawing.Point(86, 359);
+            this.btnlimpiar.Location = new System.Drawing.Point(95, 308);
             this.btnlimpiar.Name = "btnlimpiar";
-            this.btnlimpiar.Size = new System.Drawing.Size(155, 51);
+            this.btnlimpiar.Size = new System.Drawing.Size(155, 61);
             this.btnlimpiar.TabIndex = 11;
             this.btnlimpiar.Text = "Limpiar";
             this.btnlimpiar.UseVisualStyleBackColor = true;
@@ -148,35 +122,13 @@
             // btneliminar
             // 
             this.btneliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btneliminar.Location = new System.Drawing.Point(172, 298);
+            this.btneliminar.Location = new System.Drawing.Point(60, 231);
             this.btneliminar.Name = "btneliminar";
-            this.btneliminar.Size = new System.Drawing.Size(159, 55);
+            this.btneliminar.Size = new System.Drawing.Size(222, 71);
             this.btneliminar.TabIndex = 10;
             this.btneliminar.Text = "Eliminar";
             this.btneliminar.UseVisualStyleBackColor = true;
             this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
-            // 
-            // btnmodificar
-            // 
-            this.btnmodificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnmodificar.Location = new System.Drawing.Point(10, 298);
-            this.btnmodificar.Name = "btnmodificar";
-            this.btnmodificar.Size = new System.Drawing.Size(156, 55);
-            this.btnmodificar.TabIndex = 9;
-            this.btnmodificar.Text = "Modificar";
-            this.btnmodificar.UseVisualStyleBackColor = true;
-            this.btnmodificar.Click += new System.EventHandler(this.btnmodificar_Click);
-            // 
-            // btnguardar
-            // 
-            this.btnguardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnguardar.Location = new System.Drawing.Point(10, 216);
-            this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(321, 76);
-            this.btnguardar.TabIndex = 8;
-            this.btnguardar.Text = "Guardar";
-            this.btnguardar.UseVisualStyleBackColor = true;
-            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
             // txtstock
             // 
@@ -205,7 +157,6 @@
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(227, 20);
             this.txtid.TabIndex = 4;
-            this.txtid.TextChanged += new System.EventHandler(this.txtid_TextChanged);
             // 
             // label4
             // 
@@ -247,23 +198,44 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ID:";
             // 
-            // FormProductos
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(552, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(227, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Seleccionar Registro para Visualizar o Eliminar ";
+            // 
+            // dgvproductos
+            // 
+            this.dgvproductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvproductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvproductos.Location = new System.Drawing.Point(355, 21);
+            this.dgvproductos.Name = "dgvproductos";
+            this.dgvproductos.ReadOnly = true;
+            this.dgvproductos.Size = new System.Drawing.Size(637, 379);
+            this.dgvproductos.TabIndex = 6;
+            this.dgvproductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellClick);
+            this.dgvproductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellContentClick);
+            // 
+            // FormCaducidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 431);
+            this.ClientSize = new System.Drawing.Size(1004, 412);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvproductos);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "FormProductos";
+            this.Name = "FormCaducidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormProductos";
-            this.Load += new System.EventHandler(this.FormProductos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).EndInit();
+            this.Text = "FormCaducidad";
+            this.Load += new System.EventHandler(this.FormCaducidad_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,13 +243,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dgvproductos;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DateTimePicker dtpFechaCaducidad;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtdescripcion;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnlimpiar;
         private System.Windows.Forms.Button btneliminar;
-        private System.Windows.Forms.Button btnmodificar;
-        private System.Windows.Forms.Button btnguardar;
         private System.Windows.Forms.TextBox txtstock;
         private System.Windows.Forms.TextBox txtprecio;
         private System.Windows.Forms.TextBox txtnombreproducto;
@@ -286,9 +258,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtdescripcion;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dtpFechaCaducidad;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dgvproductos;
     }
 }

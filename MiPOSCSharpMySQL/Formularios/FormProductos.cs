@@ -26,6 +26,10 @@ namespace MiPOSCSharpMySQL.Formularios
         {
 
         }
+        private void FormProductos_Load(object sender, EventArgs e)
+        {
+
+        }
 
         /*------------------------------------------------------------------------------------------------------*/
 
@@ -34,37 +38,36 @@ namespace MiPOSCSharpMySQL.Formularios
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
             objetoProducto.EliminarProducto(txtid);
             objetoProducto.MostrarProductos(dgvproductos);
-            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock,txtdescripcion);
+            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock,txtdescripcion, dtpFechaCaducidad);
         }
 
         private void btnmodificar_Click(object sender, EventArgs e)
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
-            objetoProducto.ModificarProducto(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion);
+            objetoProducto.ModificarProducto(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion, dtpFechaCaducidad);
             objetoProducto.MostrarProductos(dgvproductos);
-            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio,txtstock, txtdescripcion);
+            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio,txtstock, txtdescripcion, dtpFechaCaducidad);
         }
 
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
-            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion);
+            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion, dtpFechaCaducidad);
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
-            objetoProducto.AgregarProducto(txtid,txtnombreproducto, txtprecio, txtstock,txtdescripcion);
+            objetoProducto.AgregarProducto(txtid,txtnombreproducto, txtprecio, txtstock,txtdescripcion, dtpFechaCaducidad);
             objetoProducto.MostrarProductos(dgvproductos);
-            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion);
+            objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion, dtpFechaCaducidad);
         }
 
         private void dgvproductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
-            objetoProducto.SeleccionarProducto(dgvproductos, txtid, txtnombreproducto, txtprecio, txtstock,txtdescripcion);
+            objetoProducto.SeleccionarProducto(dgvproductos, txtid, txtnombreproducto, txtprecio, txtstock,txtdescripcion, dtpFechaCaducidad);
         }
-        
 
     }
 }

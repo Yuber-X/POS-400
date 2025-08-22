@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\controlador\\controladorproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:controlador\\controladorproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\modelos\\modeloproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:modelos\\modeloproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\formularios\\formcaducidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:formularios\\formcaducidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\formularios\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:formularios\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\formularios\\formcaducidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:formularios\\formcaducidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,20 +26,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ModeloProducto.cs",
-              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Modelos\\ModeloProducto.cs",
-              "RelativeDocumentMoniker": "Modelos\\ModeloProducto.cs",
-              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Modelos\\ModeloProducto.cs",
-              "RelativeToolTip": "Modelos\\ModeloProducto.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBcAAABiAAAAAAAAAA==",
+              "Title": "FormCaducidad.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormCaducidad.cs",
+              "RelativeDocumentMoniker": "Formularios\\FormCaducidad.cs",
+              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormCaducidad.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Formularios\\FormCaducidad.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T20:23:07.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T22:33:42.611Z",
+              "IsPinned": true,
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Bookmark",
@@ -43,27 +47,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ControladorProducto.cs",
-              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Controlador\\ControladorProducto.cs",
-              "RelativeDocumentMoniker": "Controlador\\ControladorProducto.cs",
-              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Controlador\\ControladorProducto.cs",
-              "RelativeToolTip": "Controlador\\ControladorProducto.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwDkAAABLAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "FormCaducidad.cs",
+              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormCaducidad.cs",
+              "RelativeDocumentMoniker": "Formularios\\FormCaducidad.cs",
+              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormCaducidad.cs",
+              "RelativeToolTip": "Formularios\\FormCaducidad.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowBYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T18:31:22.007Z",
+              "WhenOpened": "2025-08-22T00:36:53.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FormProductos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormProductos.cs",
-              "RelativeDocumentMoniker": "Formularios\\FormProductos.cs",
-              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormProductos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Formularios\\FormProductos.cs [Dise\u00F1o]",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAuwF4AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-20T18:26:14.339Z",
+              "WhenOpened": "2025-08-22T00:42:09.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T00:42:05.786Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

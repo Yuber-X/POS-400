@@ -91,5 +91,10 @@ namespace MiPOSCSharpMySQL.Formularios
         {
             MessageBox.Show("El ID se Auto-Rellena no es posible modificar.");
         }
+
+        private void txtid_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

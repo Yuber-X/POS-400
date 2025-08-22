@@ -144,6 +144,7 @@
             this.txtid.Size = new System.Drawing.Size(249, 20);
             this.txtid.TabIndex = 4;
             this.txtid.Click += new System.EventHandler(this.txtid_Click);
+            this.txtid.TextChanged += new System.EventHandler(this.txtid_TextChanged);
             // 
             // label4
             // 
@@ -217,6 +218,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvclientes);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormClientes";

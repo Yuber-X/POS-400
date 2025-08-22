@@ -55,7 +55,17 @@ namespace MiPOSCSharpMySQL.Controlador
                     objetoProducto.Descripcion = row["descripcionProducto"].ToString();
 
                     if (row.IsNull("fechaCaducidad"))
-                        objetoProducto.FechaCaducidad = Convert.ToDateTime()
+                    {
+                        objetoProducto.FechaCaducidad = null;
+                    }
+                    else
+                    {
+                        objetoProducto.FechaCaducidad = Convert.ToDateTime(row["fechaCaducidad"]);
+                    }
+
+                    // Si la fecha es null, el DataTable admite DateTime, pero se puede mandar DateTime.MinValue o DBNull
+                    // Para mostrar limpio en la grilla, usare DBNull si no hay fecha:
+                    object fechaParaTabla = (object)objetoProducto.FechaCaducidad ?? DBNull.Value;
 
                     modelo.Rows.Add(
                         objetoProducto.IdProducto, 
@@ -64,7 +74,7 @@ namespace MiPOSCSharpMySQL.Controlador
                         objetoProducto.StockProducto, 
                         objetoProducto.Descripcion,
                         fechaParaTabla
-                        );
+                    );
                 }
 
                 tablaTotalProductos.DataSource = modelo;
@@ -79,12 +89,12 @@ namespace MiPOSCSharpMySQL.Controlador
             }
         }
 
-        public void AgregarProducto(TextBox idProducto, TextBox nombre, TextBox precioProducto, TextBox stock, TextBox descripcion)
+        public void AgregarProducto(TextBox idProducto, TextBox nombre, TextBox precioProducto, TextBox stock, TextBox descripcion, DateTimePicker dtpFechaCaducidad)
         {
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
             Modelos.ModeloProducto objetoProducto = new Modelos.ModeloProducto();
 
-            string consulta = "insert into producto( idProducto, nombre, precioProducto, stock, descripcionProducto) values (@idProducto,@nombre, @precioProducto, @stock,@descripcionProducto);";
+            string consulta = "insert into producto( idProducto, nombre, precioProducto, stock, descripcionProducto, fechaCaducidad) values (@idProducto,@nombre, @precioProducto, @stock,@descripcionProducto, @fechaCaducidad);";
 
             try
             {
@@ -94,8 +104,9 @@ namespace MiPOSCSharpMySQL.Controlador
                 objetoProducto.StockProducto = int.Parse(stock.Text);
                 objetoProducto.Descripcion = descripcion.Text;
 
-                MySqlConnection conexion = objetoConexion.estableceConexion();
+                objetoProducto.FechaCaducidad = dtpFechaCaducidad.Value.Date;
 
+                MySqlConnection conexion = objetoConexion.estableceConexion();
                 MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                 comando.Parameters.AddWithValue("@idProducto", objetoProducto.IdProducto);
@@ -103,6 +114,8 @@ namespace MiPOSCSharpMySQL.Controlador
                 comando.Parameters.AddWithValue("@precioProducto", objetoProducto.PrecioProducto);
                 comando.Parameters.AddWithValue("@stock", objetoProducto.StockProducto);
                 comando.Parameters.AddWithValue("@descripcionProducto", objetoProducto.Descripcion);
+                comando.Parameters.Add("@fechaCaducidad", MySqlDbType.Date).Value = (object)objetoProducto.FechaCaducidad ?? DBNull.Value;
+
 
                 comando.ExecuteNonQuery();
 
@@ -119,13 +132,14 @@ namespace MiPOSCSharpMySQL.Controlador
             }
         }
 
-        public void LimpiarCampos(TextBox id, TextBox nombre, TextBox precio, TextBox stock, TextBox descripcion)
+        public void LimpiarCampos(TextBox id, TextBox nombre, TextBox precio, TextBox stock, TextBox descripcion, DateTimePicker dtpFechaCaducidad)
         {
             id.Text = "";
             nombre.Text = "";
             precio.Text = "";
             stock.Text = "";
             descripcion.Text = "";
+            dtpFechaCaducidad.Value = DateTime.Today;
         }
 
         public void EliminarProducto(TextBox id)
@@ -164,12 +178,12 @@ namespace MiPOSCSharpMySQL.Controlador
 
         }
 
-        public void ModificarProducto(TextBox id, TextBox nombre, TextBox precio, TextBox stock, TextBox descripcion)
+        public void ModificarProducto(TextBox id, TextBox nombre, TextBox precio, TextBox stock, TextBox descripcion, DateTimePicker dtpFechaCaducidad)
         {
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
             Modelos.ModeloProducto objetoProducto = new Modelos.ModeloProducto();
 
-            string consulta = "UPDATE producto SET producto.idProducto = @idProducto , producto.nombre = @nombre, producto.precioProducto = @precioProducto, producto.stock = @stock, producto.descripcionProducto = @descripcionProducto where producto.idProducto = @idProducto";
+            string consulta = "UPDATE producto SET producto.idProducto = @idProducto , producto.nombre = @nombre, producto.precioProducto = @precioProducto, producto.stock = @stock, producto.descripcionProducto = @descripcionProducto, producto.fechaCaducidad = @fechaCaducidad where producto.idProducto = @idProducto";
 
             try
             {
@@ -178,9 +192,10 @@ namespace MiPOSCSharpMySQL.Controlador
                 objetoProducto.PrecioProducto = Double.Parse(precio.Text);
                 objetoProducto.StockProducto = int.Parse(stock.Text);
                 objetoProducto.Descripcion = descripcion.Text;
+                objetoProducto.FechaCaducidad = dtpFechaCaducidad.Value.Date;
+
 
                 MySqlConnection conexion = objetoConexion.estableceConexion();
-
                 MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
 
@@ -189,9 +204,9 @@ namespace MiPOSCSharpMySQL.Controlador
                 comando.Parameters.AddWithValue("@precioProducto", objetoProducto.PrecioProducto);
                 comando.Parameters.AddWithValue("@stock", objetoProducto.StockProducto);
                 comando.Parameters.AddWithValue("@descripcionProducto", objetoProducto.Descripcion);
+                comando.Parameters.Add("@fechaCaducidad", MySqlDbType.Date).Value = (object)objetoProducto.FechaCaducidad ?? DBNull.Value;
 
                 comando.ExecuteNonQuery();
-
                 MessageBox.Show("Se Modifico correctamente");
 
             }
@@ -206,9 +221,9 @@ namespace MiPOSCSharpMySQL.Controlador
 
         } 
 
-        public void SeleccionarProducto(DataGridView totalProducto, TextBox id, TextBox nombre, TextBox precio, TextBox stock, TextBox descripcion)
+        public void SeleccionarProducto(DataGridView totalProducto, TextBox id, TextBox nombre, TextBox precio, TextBox stock, TextBox descripcion, DateTimePicker dtpFechaCaducidad)
         {
-            int fila = totalProducto.CurrentRow.Index;
+            int fila = totalProducto.CurrentRow?.Index ?? -1;
 
             try
             {
@@ -219,11 +234,25 @@ namespace MiPOSCSharpMySQL.Controlador
                     precio.Text = totalProducto.Rows[fila].Cells[2].Value.ToString();
                     stock.Text = totalProducto.Rows[fila].Cells[3].Value.ToString();
                     descripcion.Text = totalProducto.Rows[fila].Cells[4].Value.ToString();
+
+                    object valorFecha = totalProducto.Rows[fila].Cells[5].Value;
+                    if (valorFecha == null || valorFecha == DBNull.Value)
+                    {
+                        dtpFechaCaducidad.Value = DateTime.Today;
+                    }
+                    else
+                    {
+                        dtpFechaCaducidad.Value = Convert.ToDateTime(valorFecha);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una fila válida.");
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error inesperado: " + e.ToString());
+                MessageBox.Show("Error inesperado al SELECCIONAR: " + e.ToString());
             }
         }
 
