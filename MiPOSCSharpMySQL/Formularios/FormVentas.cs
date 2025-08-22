@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using MySql.Data.MySqlClient;
 
 
 namespace MiPOSCSharpMySQL.Formularios
@@ -31,6 +32,8 @@ namespace MiPOSCSharpMySQL.Formularios
 
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
             objetoVenta.MostrarUltimaFactura(lbUltimaFactura);
+
+            VerificarProductosCaducidad();
 
             //Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
             //Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
@@ -198,6 +201,43 @@ namespace MiPOSCSharpMySQL.Formularios
             }
         
         }
+
+        private void VerificarProductosCaducidad()
+        {
+            Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+            try
+            {
+                using (MySqlConnection conexion = objetoConexion.estableceConexion())
+                {
+                    string sql = @"SELECT COUNT(*) 
+                          FROM producto 
+                          WHERE fechaCaducidad IS NOT NULL
+                          AND TIMESTAMPDIFF(MONTH, CURDATE(), fechaCaducidad) <= 3;";
+
+                    MySqlCommand comando = new MySqlCommand(sql, conexion);
+                    int productosCriticos = Convert.ToInt32(comando.ExecuteScalar());
+
+                    if (productosCriticos > 0)
+                    {
+                        MessageBox.Show($"⚠ Atención: Hay {productosCriticos} productos que se caducan en menos de 3 meses.",
+                                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    } else if (productosCriticos <= 1)
+                    {
+                        MessageBox.Show($"⚠ Atención: Hay {productosCriticos} productos que se caducan en este meses.",
+                                       "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error al verificar caducidad: " + e.Message);
+            }
+            finally
+            {
+                objetoConexion.CerrarConexion();
+            }
+        }
+
 
     }
 }
