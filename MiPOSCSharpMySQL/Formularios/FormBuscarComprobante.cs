@@ -40,6 +40,7 @@ namespace MiPOSCSharpMySQL.Formularios
                 lblnombres.Text = fila["nombres"].ToString();
                 lblappaterno.Text = fila["appaterno"].ToString();
                 lblapmaterno.Text = fila["appmaterno"].ToString();
+                lblMetodoPago.Text = fila["metodoPago"].ToString();
             }
             else
             {

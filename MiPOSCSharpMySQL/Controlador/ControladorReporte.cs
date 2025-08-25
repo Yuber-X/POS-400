@@ -74,9 +74,9 @@ namespace MiPOSCSharpMySQL.Controlador
 
             DataTable modelo = new DataTable();
 
-            modelo.Columns.Add("N.Producto", typeof(string));
+            modelo.Columns.Add("Producto", typeof(string));
             modelo.Columns.Add("Cantidad", typeof(string));
-            modelo.Columns.Add("PrecioVenta", typeof(double));
+            modelo.Columns.Add("Precio Venta", typeof(double));
             modelo.Columns.Add("Subtotal", typeof(int));
 
             NumberFormatInfo formato = new NumberFormatInfo();
@@ -138,7 +138,7 @@ namespace MiPOSCSharpMySQL.Controlador
 
             DataTable modelo = new DataTable();
 
-            modelo.Columns.Add("Id.Factura", typeof(long));
+            modelo.Columns.Add("ID.Factura", typeof(long));
             modelo.Columns.Add("FechaFactura", typeof(DateTime));
             modelo.Columns.Add("N.Producto", typeof(string));
             modelo.Columns.Add("Cantidad", typeof(int));
@@ -216,7 +216,7 @@ namespace MiPOSCSharpMySQL.Controlador
         {
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
 
-            string consulta = "SELECT factura.idfactura, factura.fechaFactura, cliente.nombres, cliente.appaterno, cliente.appmaterno " +
+            string consulta = "SELECT factura.idfactura, factura.fechaFactura, factura.metodoPago , cliente.nombres, cliente.appaterno, cliente.appmaterno " +
                               "FROM factura INNER JOIN cliente ON cliente.idcliente = factura.fkCliente " +
                               "WHERE factura.idfactura = @idFactura;";
 

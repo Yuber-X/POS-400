@@ -78,6 +78,7 @@
             this.lbIva = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.btnFacturar = new System.Windows.Forms.Button();
+            this.metodoPago = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -308,6 +309,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.metodoPago);
             this.groupBox6.Controls.Add(this.btnAgregarProducto);
             this.groupBox6.Controls.Add(this.txtStockVenta);
             this.groupBox6.Controls.Add(this.txtPrecioVentaFinal);
@@ -345,7 +347,7 @@
             // 
             // txtPrecioVentaFinal
             // 
-            this.txtPrecioVentaFinal.Location = new System.Drawing.Point(94, 35);
+            this.txtPrecioVentaFinal.Location = new System.Drawing.Point(94, 44);
             this.txtPrecioVentaFinal.Name = "txtPrecioVentaFinal";
             this.txtPrecioVentaFinal.Size = new System.Drawing.Size(77, 20);
             this.txtPrecioVentaFinal.TabIndex = 4;
@@ -387,7 +389,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(6, 36);
+            this.label14.Location = new System.Drawing.Point(91, 25);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(84, 16);
             this.label14.TabIndex = 0;
@@ -599,6 +601,20 @@
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
             // 
+            // metodoPago
+            // 
+            this.metodoPago.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.metodoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metodoPago.FormattingEnabled = true;
+            this.metodoPago.Items.AddRange(new object[] {
+            "Efectivo",
+            "Tarjeta"});
+            this.metodoPago.Location = new System.Drawing.Point(9, 28);
+            this.metodoPago.Name = "metodoPago";
+            this.metodoPago.Size = new System.Drawing.Size(79, 38);
+            this.metodoPago.TabIndex = 17;
+            this.metodoPago.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.metodoPago_ItemCheck);
+            // 
             // FormVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,5 +706,6 @@
         private System.Windows.Forms.Label lbIva;
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Button btnFacturar;
+        private System.Windows.Forms.CheckedListBox metodoPago;
     }
 }

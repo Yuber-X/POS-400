@@ -171,8 +171,20 @@ namespace MiPOSCSharpMySQL.Formularios
             Controlador.ControladorReporte objetoReporte = new Controlador.ControladorReporte();
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
 
+            // Verifico si el usuario selecciono el metodo de pago
+            if (metodoPago.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("⚠ Debe seleccionar un método de pago (Efectivo o Tarjeta).",
+                                 "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string pagoSeleccionado = metodoPago.CheckedItems[0].ToString();
+
+
             // Creamos la factura y obtenemos su ID
-            long idFactura = objetoVenta.CrearFacturaV2(txtIdCliente);
+            long idFactura = objetoVenta.CrearFacturaV2(txtIdCliente, pagoSeleccionado);
+
 
             // Si hubo un error, terminamos
             if (idFactura == -1) return;
@@ -258,8 +270,8 @@ namespace MiPOSCSharpMySQL.Formularios
                         else
                         {
                             // Marcamos como reconocidos los grupos presentes (persistente)
-                            if (hayGrupo1) Controlador.NotificadorCaducidad.MarcarComoNotificado(1);
-                            if (hayGrupo3) Controlador.NotificadorCaducidad.MarcarComoNotificado(3);
+                            if (hayGrupo1) Controlador.NotificadorCaducidad.MarcarComoNotificado(1, productos1Mes);
+                            if (hayGrupo3) Controlador.NotificadorCaducidad.MarcarComoNotificado(3, productos3Meses);
                         }
                     }
                 }
@@ -271,6 +283,18 @@ namespace MiPOSCSharpMySQL.Formularios
             finally
             {
                 objetoConexion.CerrarConexion();
+            }
+        }
+
+        private void metodoPago_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // Desmarca todas las demás opciones cuando selecciona una
+            for (int i = 0; i < metodoPago.Items.Count; i++)
+            {
+                if (i != e.Index)
+                {
+                    metodoPago.SetItemChecked(i, false);
+                }
             }
         }
     }

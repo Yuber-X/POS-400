@@ -27,6 +27,17 @@ namespace MiPOSCSharpMySQL.Formularios
             objetoProducto.MostrarProductos(dgvproductos);
 
             CargarProductosCaducidad(dgvproductos);
+
+            dgvproductos.Columns["idProducto"].HeaderText = "ID";
+            dgvproductos.Columns["nombre"].HeaderText = "Producto";
+            dgvproductos.Columns["precioProducto"].HeaderText = "Precio";
+            dgvproductos.Columns["stock"].HeaderText = "Cantidad";
+            dgvproductos.Columns["descripcionProducto"].HeaderText = "Descripcion";
+            dgvproductos.Columns["fechaCaducidad"].HeaderText = "Caducidad";
+            dgvproductos.Columns["mesesRestantes"].HeaderText = "Meses Restantes";
+
+
+
         }
 
         private void FormCaducidad_Load(object sender, EventArgs e)

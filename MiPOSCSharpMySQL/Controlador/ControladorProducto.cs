@@ -21,12 +21,12 @@ namespace MiPOSCSharpMySQL.Controlador
 
             DataTable modelo = new DataTable();
 
-            modelo.Columns.Add("id", typeof(long));
-            modelo.Columns.Add("Nombre", typeof(string));
+            modelo.Columns.Add("ID", typeof(long));
+            modelo.Columns.Add("Producto", typeof(string));
             modelo.Columns.Add("Precio", typeof(double));
             modelo.Columns.Add("Cantidad", typeof(int));
             modelo.Columns.Add("Descripcion", typeof(string));
-            modelo.Columns.Add("FechaCaducidad", typeof(DateTime));
+            modelo.Columns.Add("Caducidad", typeof(DateTime));
 
 
             tablaTotalProductos.DataSource = modelo;

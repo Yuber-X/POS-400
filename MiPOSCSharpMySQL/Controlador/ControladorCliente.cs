@@ -20,10 +20,10 @@ namespace MiPOSCSharpMySQL.Controlador
 
             DataTable modelo = new DataTable();
 
-            modelo.Columns.Add("id", typeof(long));
-            modelo.Columns.Add("nombres", typeof(string));
-            modelo.Columns.Add("appaterno", typeof(string));
-            modelo.Columns.Add("appmaterno", typeof(string));
+            modelo.Columns.Add("ID", typeof(long));
+            modelo.Columns.Add("Nombres", typeof(string));
+            modelo.Columns.Add("Ap.Paterno", typeof(string));
+            modelo.Columns.Add("Ap.Materno", typeof(string));
 
             tablaTotalClientes.DataSource = modelo;
 

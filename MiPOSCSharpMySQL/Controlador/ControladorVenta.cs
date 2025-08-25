@@ -240,9 +240,9 @@ namespace MiPOSCSharpMySQL.Controlador
                 if (modelo == null)
                 {
                     modelo = new DataTable();
-                    modelo.Columns.Add("Id", typeof(string));
-                    modelo.Columns.Add("NombreProducto", typeof(string));
-                    modelo.Columns.Add("PrecioProducto", typeof(double));
+                    modelo.Columns.Add("ID", typeof(string));
+                    modelo.Columns.Add("Producto", typeof(string));
+                    modelo.Columns.Add("Precio", typeof(double));
                     modelo.Columns.Add("Cantidad", typeof(int));
                     modelo.Columns.Add("Subtotal", typeof(double));
 
@@ -361,30 +361,60 @@ namespace MiPOSCSharpMySQL.Controlador
         //        objetoConexion.CerrarConexion();
         //    }
         //}
-        public long CrearFacturaV2(TextBox codCliente)
+        public long CrearFacturaV2(TextBox codCliente, string metodoPago)
         {
-            Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
-            Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
+            //    Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+            //    Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
 
-            string consulta = "INSERT INTO factura (fechaFactura, fkCliente) VALUES (CURDATE(), @fkCliente); SELECT LAST_INSERT_ID();";
+            //    string consulta = "INSERT INTO factura (fechaFactura, fkCliente) VALUES (CURDATE(), @fkCliente); SELECT LAST_INSERT_ID();";
+
+            //    try
+            //    {
+            //        objetoCliente.IdCliente = long.Parse(codCliente.Text);
+
+            //        using (MySqlConnection conexion = objetoConexion.estableceConexion())
+            //        using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+            //        {
+            //            comando.Parameters.AddWithValue("@fkCliente", objetoCliente.IdCliente);
+
+            //            long idFactura = Convert.ToInt64(comando.ExecuteScalar()); // Obtenemos el ID de la factura creada
+            //            return idFactura;
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Error al crear factura: " + ex.Message);
+            //        return -1;
+            //    }
+
+            long idFactura = -1;
+            Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
 
             try
             {
-                objetoCliente.IdCliente = long.Parse(codCliente.Text);
-
                 using (MySqlConnection conexion = objetoConexion.estableceConexion())
-                using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                 {
-                    comando.Parameters.AddWithValue("@fkCliente", objetoCliente.IdCliente);
-                    long idFactura = Convert.ToInt64(comando.ExecuteScalar()); // Obtenemos el ID de la factura creada
-                    return idFactura;
+                    string sql = "INSERT INTO factura (fechaFactura, fkCliente, metodoPago) " +
+                                 "VALUES (NOW(), @fkCliente, @metodoPago); SELECT LAST_INSERT_ID();";
+
+                    MySqlCommand comando = new MySqlCommand(sql, conexion);
+                    comando.Parameters.AddWithValue("@fkCliente", codCliente.Text);
+                    comando.Parameters.AddWithValue("@metodoPago", metodoPago);
+
+                    idFactura = Convert.ToInt64(comando.ExecuteScalar());
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show("Error al crear factura: " + ex.Message);
-                return -1;
+                MessageBox.Show("Error al crear factura: " + e.Message);
             }
+            finally
+            {
+                objetoConexion.CerrarConexion();
+            }
+
+            return idFactura;
+
         }
 
         //public void RealizarVenta(DataGridView tablaResumenVenta)
