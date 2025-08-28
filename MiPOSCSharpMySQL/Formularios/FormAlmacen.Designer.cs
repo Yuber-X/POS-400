@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAlmacen));
             this.dgvproductos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblProductosTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,12 +57,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Productos en Almacen";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 543);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 25);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Productos en Total:";
+            // 
+            // lblProductosTotal
+            // 
+            this.lblProductosTotal.AutoSize = true;
+            this.lblProductosTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductosTotal.Location = new System.Drawing.Point(237, 548);
+            this.lblProductosTotal.Name = "lblProductosTotal";
+            this.lblProductosTotal.Size = new System.Drawing.Size(103, 18);
+            this.lblProductosTotal.TabIndex = 3;
+            this.lblProductosTotal.Text = "-------------------";
+            // 
             // FormAlmacen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(820, 538);
+            this.ClientSize = new System.Drawing.Size(820, 588);
+            this.Controls.Add(this.lblProductosTotal);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormAlmacen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -67,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -74,5 +101,7 @@
 
         private System.Windows.Forms.DataGridView dgvproductos;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblProductosTotal;
     }
 }

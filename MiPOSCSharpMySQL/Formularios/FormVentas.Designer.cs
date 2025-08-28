@@ -513,7 +513,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(456, 34);
+            this.label18.Location = new System.Drawing.Point(439, 34);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(126, 13);
             this.label18.TabIndex = 3;
@@ -593,7 +593,7 @@
             // btnFacturar
             // 
             this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFacturar.Location = new System.Drawing.Point(398, 610);
+            this.btnFacturar.Location = new System.Drawing.Point(376, 610);
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(267, 47);
             this.btnFacturar.TabIndex = 21;

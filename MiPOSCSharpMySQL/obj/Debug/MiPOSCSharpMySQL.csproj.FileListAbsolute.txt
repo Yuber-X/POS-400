@@ -97,3 +97,6 @@ C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSh.0
 C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.exe
 C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.pdb
 C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.Formularios.FormCaducidad.resources
+C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.Formularios.FormAdminMode.resources
+C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.Formularios.FormInicioSesion.resources
+C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.exe.config

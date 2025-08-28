@@ -14,7 +14,6 @@ namespace MiPOSCSharpMySQL.Modelos
         Double precioProducto;
         int stockProducto;
         String descripcion;
-        DateTime fechaCaducidad;
 
         public long IdProducto { get => idProducto; set => idProducto = value; }
         public string NombreProducto { get => nombreProducto; set => nombreProducto = value; }
