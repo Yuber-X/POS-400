@@ -13,6 +13,8 @@ namespace MiPOSCSharpMySQL.Formularios
 {
     public partial class FormInicioSesion: Form
     {
+
+
         public FormInicioSesion()
         {
             InitializeComponent();

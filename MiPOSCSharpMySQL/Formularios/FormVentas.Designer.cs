@@ -51,6 +51,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.metodoPago = new System.Windows.Forms.CheckedListBox();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.txtStockVenta = new System.Windows.Forms.TextBox();
             this.txtPrecioVentaFinal = new System.Windows.Forms.TextBox();
@@ -78,7 +79,6 @@
             this.lbIva = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.btnFacturar = new System.Windows.Forms.Button();
-            this.metodoPago = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -134,7 +134,7 @@
             this.dgvCliente.Location = new System.Drawing.Point(6, 65);
             this.dgvCliente.Name = "dgvCliente";
             this.dgvCliente.ReadOnly = true;
-            this.dgvCliente.Size = new System.Drawing.Size(501, 135);
+            this.dgvCliente.Size = new System.Drawing.Size(509, 135);
             this.dgvCliente.TabIndex = 6;
             this.dgvCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellClick);
             this.dgvCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellContentClick);
@@ -324,6 +324,20 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Precio y Cantidad";
             this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
+            // 
+            // metodoPago
+            // 
+            this.metodoPago.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.metodoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metodoPago.FormattingEnabled = true;
+            this.metodoPago.Items.AddRange(new object[] {
+            "Efectivo",
+            "Tarjeta"});
+            this.metodoPago.Location = new System.Drawing.Point(9, 28);
+            this.metodoPago.Name = "metodoPago";
+            this.metodoPago.Size = new System.Drawing.Size(79, 38);
+            this.metodoPago.TabIndex = 17;
+            this.metodoPago.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.metodoPago_ItemCheck);
             // 
             // btnAgregarProducto
             // 
@@ -600,20 +614,6 @@
             this.btnFacturar.Text = "FACTURAR";
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
-            // 
-            // metodoPago
-            // 
-            this.metodoPago.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metodoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metodoPago.FormattingEnabled = true;
-            this.metodoPago.Items.AddRange(new object[] {
-            "Efectivo",
-            "Tarjeta"});
-            this.metodoPago.Location = new System.Drawing.Point(9, 28);
-            this.metodoPago.Name = "metodoPago";
-            this.metodoPago.Size = new System.Drawing.Size(79, 38);
-            this.metodoPago.TabIndex = 17;
-            this.metodoPago.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.metodoPago_ItemCheck);
             // 
             // FormVentas
             // 

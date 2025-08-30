@@ -1,4 +1,5 @@
 ﻿using MiPOSCSharpMySQL.Formularios;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace MiPOSCSharpMySQL
 {
     public partial class Form1 : Form
     {
+
         private string usuarioLogueado;
         private string rolLogueado;
 
@@ -20,31 +22,97 @@ namespace MiPOSCSharpMySQL
         {
             InitializeComponent();
 
-            Configuracion.CConexion objetoConexcion = new Configuracion.CConexion();
-            objetoConexcion.estableceConexion();
-            
             usuarioLogueado = usuario;
             rolLogueado = rol;
 
+            Configuracion.CConexion objetoConexcion = new Configuracion.CConexion();
+            objetoConexcion.estableceConexion();
+            
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Text = $"POS-400 - Usuario: {usuarioLogueado} ({rolLogueado})";
+            AplicarPermisos();
+        }
 
-            // Restringir accesos según rol
-            if (rolLogueado != "ADMIN")
+        private void SetAllMenuItemsEnabled(ToolStripItemCollection items, bool enabled)
+        {
+            foreach (ToolStripItem it in items)
             {
-                // Desactivar menús que no son de usuario normal
-                usuariosToolStripMenuItem.Enabled = false;
-                almacenToolStripMenuItem.Enabled = false;
-                registroToolStripMenuItem.Enabled = false;
-                caducidadToolStripMenuItem.Enabled = false;
-                adminToolStripMenuItem.Enabled=false;
-                productoToolStripMenuItem.Enabled = false;
-                cuadreToolStripMenuItem.Enabled=false;
+                if (it is ToolStripMenuItem mi)
+                {
+                    mi.Enabled = enabled;
+                    if (mi.HasDropDownItems)
+                        SetAllMenuItemsEnabled(mi.DropDownItems, enabled);
+                }
             }
+        }
+
+        private void AplicarPermisos()
+        {
+            // 1) Apaga todo
+            venderToolStripMenuItem.Enabled = false;
+            clientesToolStripMenuItem.Enabled = false;
+            productoToolStripMenuItem.Enabled = false;
+            caducidadToolStripMenuItem.Enabled = false;
+            buscarComprobanteToolStripMenuItem.Enabled = false;
+            cuadreToolStripMenuItem.Enabled = false;
+            registroToolStripMenuItem.Enabled = false;
+            almacenToolStripMenuItem.Enabled = false;
+            adminToolStripMenuItem.Enabled = false;
+
+            // 2) Si es ADMIN, enciende todo y sal
+            if (rolLogueado == "ADMIN")
+            {
+                SetAllMenuItemsEnabled(menuStrip1.Items, true);
+                return;
+            }
+
+            // 3) Cargar permisos del usuario desde BD
+            var permisos = PermisosUsuarioPorClave(usuarioLogueado); // HashSet<string> con 'formVentas', etc.
+
+            // 4) Mapa clave -> item
+            var mapa = new Dictionary<string, ToolStripMenuItem>()
+    {
+        { "formVentas", venderToolStripMenuItem },
+        { "formClientes", clientesToolStripMenuItem },
+        { "formProductos", productoToolStripMenuItem },
+        { "formCaducidad", caducidadToolStripMenuItem },
+        { "formBuscarComprobante", buscarComprobanteToolStripMenuItem },
+        { "formCuadre", cuadreToolStripMenuItem },
+        { "formRegistroPorFecha", registroToolStripMenuItem },
+        { "formAlmacen", almacenToolStripMenuItem },
+        { "formAdminMode", adminToolStripMenuItem },
+    };
+
+            foreach (var clave in permisos)
+                if (mapa.TryGetValue(clave, out var item))
+                    item.Enabled = true;
+        }
+
+        private HashSet<string> PermisosUsuarioPorClave(string nombreUsuario)
+        {
+            var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            try
+            {
+                var con = new Configuracion.CConexion();
+                using (var cx = con.estableceConexion())
+                {
+                    string sql = @"
+                    SELECT p.claveForm
+                    FROM usuario u
+                    JOIN usuario_permiso up ON up.fkUsuario = u.idUsuario
+                    JOIN permiso p ON p.idPermiso = up.fkPermiso
+                    WHERE u.nombreUsuario = @u";
+                    var cmd = new MySqlCommand(sql, cx);
+                    cmd.Parameters.AddWithValue("@u", nombreUsuario);
+                    using (var rd = cmd.ExecuteReader())
+                        while (rd.Read()) set.Add(rd.GetString(0));
+                }
+            }
+            catch { /* log opcional */ }
+            return set;
         }
         private void almacenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -109,7 +177,6 @@ namespace MiPOSCSharpMySQL
             AbrirFormulario(new FormCaducidad());
             //objetoFormProductos.Show();
         }
-
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //RegistrarTiempoSesion();
@@ -118,6 +185,12 @@ namespace MiPOSCSharpMySQL
             FormInicioSesion login = new FormInicioSesion();
             login.Show();
             this.Hide();
+        }
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAdminMode mode = new FormAdminMode();
+            mode.Show();
+
         }
     }
 }

@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\formularios\\formadminmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\formularios\\formadminmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:formularios\\formadminmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\formularios\\formadminmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:formularios\\formadminmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\controlador\\controladorusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:controlador\\controladorusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,15 +23,7 @@
       "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\formularios\\formadminmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:formularios\\formadminmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\formularios\\forminiciosesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:formularios\\forminiciosesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|c:\\users\\lizar\\desktop\\yu\\code\\pt-venta-v2\\miposcsharpmysql\\modelos\\modeloproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\modelos\\modeloproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{28E4889C-9777-47B2-92DC-EEDB29A7DD7E}|MiPOSCSharpMySQL.csproj|solutionrelative:modelos\\modeloproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,33 +34,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FormInicioSesion.cs",
-              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormInicioSesion.cs",
-              "RelativeDocumentMoniker": "Formularios\\FormInicioSesion.cs",
-              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormInicioSesion.cs",
-              "RelativeToolTip": "Formularios\\FormInicioSesion.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAA8wFAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-25T19:56:09.866Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "FormAdminMode.cs",
               "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormAdminMode.cs",
               "RelativeDocumentMoniker": "Formularios\\FormAdminMode.cs",
               "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormAdminMode.cs",
               "RelativeToolTip": "Formularios\\FormAdminMode.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-27T16:56:13.626Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ControladorUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Controlador\\ControladorUsuario.cs",
+              "RelativeDocumentMoniker": "Controlador\\ControladorUsuario.cs",
+              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Controlador\\ControladorUsuario.cs",
+              "RelativeToolTip": "Controlador\\ControladorUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T15:30:39.036Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -70,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FormAdminMode.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Formularios\\FormAdminMode.cs",
               "RelativeDocumentMoniker": "Formularios\\FormAdminMode.cs",
@@ -82,16 +82,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAgwHIAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-26T20:41:03.664Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-28T16:10:51.728Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
@@ -103,20 +115,7 @@
               "RelativeToolTip": "Modelos\\ModeloProducto.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAIwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T19:04:01.037Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T18:54:57.522Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-08-27T19:04:01.037Z"
             }
           ]
         }

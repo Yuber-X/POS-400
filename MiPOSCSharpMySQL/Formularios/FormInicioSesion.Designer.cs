@@ -60,7 +60,6 @@
             this.txtPassword.Size = new System.Drawing.Size(225, 24);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPassword.Enter += new System.EventHandler(this.btnAcceder_Click);
             // 
             // groupBox1
             // 

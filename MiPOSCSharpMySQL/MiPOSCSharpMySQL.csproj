@@ -99,12 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuracion\CConexion.cs" />
-    <Compile Include="Controlador\AdminCredentialDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Controlador\ControladorCliente.cs" />
     <Compile Include="Controlador\ControladorProducto.cs" />
     <Compile Include="Controlador\ControladorReporte.cs" />
+    <Compile Include="Controlador\ControladorUsuario.cs" />
     <Compile Include="Controlador\ControladorVenta.cs" />
     <Compile Include="Controlador\NotificadorCaducidad.cs" />
     <Compile Include="Form1.cs">
@@ -142,6 +140,12 @@
     </Compile>
     <Compile Include="Formularios\FormClientes.Designer.cs">
       <DependentUpon>FormClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FormCuadre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FormCuadre.Designer.cs">
+      <DependentUpon>FormCuadre.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FormProductos.cs">
       <SubType>Form</SubType>
