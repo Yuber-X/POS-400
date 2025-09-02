@@ -114,6 +114,10 @@ namespace MiPOSCSharpMySQL
             catch { /* log opcional */ }
             return set;
         }
+
+
+        /*MENUSTRIP*/
+
         private void almacenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Formularios.FormProductos objetoFormProductos = new Formularios.FormProductos();

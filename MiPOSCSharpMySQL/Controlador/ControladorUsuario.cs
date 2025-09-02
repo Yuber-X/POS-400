@@ -15,14 +15,15 @@ namespace MiPOSCSharpMySQL.Controlador
             try
             {
                 string sql = @"SELECT 
-                 u.idUsuario AS 'ID',
-                 u.nombreUsuario AS 'Usuario',
-                 u.nombre AS 'Nombre',
-                 u.apellido AS 'Apellido',
-                 u.password AS 'Contraseña',
-                 r.nombreRol AS 'Rol'
-                 FROM usuario u 
-                 JOIN rol r ON u.fkRol = r.idRol";
+                    u.idUsuario AS 'ID',
+                    u.nombreUsuario AS 'Usuario',
+                    u.nombre AS 'Nombre',
+                    u.apellido AS 'Apellido',
+                    u.password AS 'Contraseña',
+                    r.idRol AS 'IdRol',
+                    r.nombreRol AS 'Rol'
+                    FROM usuario u 
+                    JOIN rol r ON u.fkRol = r.idRol";
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, con.estableceConexion());
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -120,14 +121,15 @@ namespace MiPOSCSharpMySQL.Controlador
         }
 
         // Permisos
+
         public DataTable ListarPermisos()
         {
             var con = new Configuracion.CConexion();
             try
             {
                 string sql = "SELECT idPermiso, nombrePermiso, claveForm FROM permiso ORDER BY idPermiso";
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, con.estableceConexion());
-                DataTable dt = new DataTable();
+                var da = new MySqlDataAdapter(sql, con.estableceConexion());
+                var dt = new DataTable();
                 da.Fill(dt);
                 return dt;
             }
@@ -139,17 +141,46 @@ namespace MiPOSCSharpMySQL.Controlador
             var con = new Configuracion.CConexion();
             try
             {
-                string sql = @"SELECT up.fkPermiso 
-                       FROM usuario_permiso up
-                       WHERE up.fkUsuario=@u";
-                MySqlCommand cmd = new MySqlCommand(sql, con.estableceConexion());
+                string sql = @"SELECT fkPermiso FROM usuario_permiso WHERE fkUsuario=@u";
+                var cmd = new MySqlCommand(sql, con.estableceConexion());
                 cmd.Parameters.AddWithValue("@u", idUsuario);
-                HashSet<int> set = new HashSet<int>();
+                var set = new HashSet<int>();
                 using (var rd = cmd.ExecuteReader())
                     while (rd.Read()) set.Add(Convert.ToInt32(rd[0]));
                 return set;
             }
             finally { con.CerrarConexion(); }
+        }
+
+        public void GuardarPermisos(int idUsuario, List<int> permisos)
+        {
+            Configuracion.CConexion con = new Configuracion.CConexion();
+            try
+            {
+                var cx = con.estableceConexion();
+
+                // eliminar permisos previos
+                var del = new MySqlCommand("DELETE FROM usuario_permiso WHERE fkUsuario=@u", cx);
+                del.Parameters.AddWithValue("@u", idUsuario);
+                del.ExecuteNonQuery();
+
+                // insertar los nuevos
+                foreach (int idPermiso in permisos)
+                {
+                    var ins = new MySqlCommand("INSERT INTO usuario_permiso (fkUsuario, fkPermiso) VALUES (@u,@p)", cx);
+                    ins.Parameters.AddWithValue("@u", idUsuario);
+                    ins.Parameters.AddWithValue("@p", idPermiso);
+                    ins.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar permisos: " + ex.Message);
+            }
+            finally
+            {
+                con.CerrarConexion();
+            }
         }
 
         public void AsignarPermiso(long idUsuario, int idPermiso)

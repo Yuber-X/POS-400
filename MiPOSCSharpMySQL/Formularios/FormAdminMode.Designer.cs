@@ -32,6 +32,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtContra = new System.Windows.Forms.TextBox();
@@ -48,8 +50,6 @@
             this.btnguardar = new System.Windows.Forms.Button();
             this.Permisos = new System.Windows.Forms.GroupBox();
             this.clPermisos = new System.Windows.Forms.CheckedListBox();
-            this.txtUser = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.Permisos.SuspendLayout();
@@ -96,6 +96,24 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Usuario";
+            // 
+            // txtUser
+            // 
+            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUser.Location = new System.Drawing.Point(100, 70);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(249, 24);
+            this.txtUser.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(33, 72);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 20);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Usuario:";
             // 
             // cbRol
             // 
@@ -261,25 +279,6 @@
             this.clPermisos.Name = "clPermisos";
             this.clPermisos.Size = new System.Drawing.Size(376, 157);
             this.clPermisos.TabIndex = 0;
-            this.clPermisos.SelectedIndexChanged += new System.EventHandler(this.clPermisos_SelectedIndexChanged);
-            // 
-            // txtUser
-            // 
-            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(100, 70);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(249, 24);
-            this.txtUser.TabIndex = 11;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(33, 72);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 20);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Usuario:";
             // 
             // FormAdminMode
             // 
