@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MiPOSCSharpMySQL.Configuracion;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,21 +15,10 @@ namespace MiPOSCSharpMySQL.Formularios
     public partial class FormInicioSesion: Form
     {
 
-
         public FormInicioSesion()
         {
             InitializeComponent();
         }
-
-        private void btnCrear_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void InicioSesion_Load(object sender, EventArgs e)
-        {
-
-        }
-        // -------------------------------------------------------------------------------------------
 
         private void btnAcceder_Click(object sender, EventArgs e)
         {
@@ -60,14 +50,25 @@ namespace MiPOSCSharpMySQL.Formularios
                     {
                         if (reader.Read())
                         {
+                            long idUsuario = Convert.ToInt64(reader["idUsuario"]);
                             string nombreUsuario = reader["nombreUsuario"].ToString();
                             string rol = reader["nombreRol"].ToString();
 
-                            // Abrimos el POS con el usuario
+                            // Guardamos en la sesión actual
+                            Configuracion.SesionActual.IdUsuario = idUsuario;
+                            Configuracion.SesionActual.NombreUsuario = nombreUsuario;
+                            Configuracion.SesionActual.LoginTime = DateTime.Now;
+
+                            // Registramos login en la BD
+                            RegistrarLogin(idUsuario);
+
+                            // Abrimos el POS
                             Form1 formPrincipal = new Form1(nombreUsuario, rol);
                             formPrincipal.Show();
                             this.Hide();
                         }
+
+
                         else
                         {
                             MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -93,5 +94,26 @@ namespace MiPOSCSharpMySQL.Formularios
              "Por favor contacte a su supervisor o administrador.",
              "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void RegistrarLogin(long idUsuario)
+        {
+            try
+            {
+                Configuracion.CConexion conexion = new Configuracion.CConexion();
+                using (MySqlConnection con = conexion.estableceConexion())
+                {
+                    string sql = @"INSERT INTO userSession (fkUsuario, loginTime) VALUES (@id, NOW())";
+                    MySqlCommand cmd = new MySqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("@id", idUsuario);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al registrar login: " + ex.Message);
+            }
+        }
+
+
     }
 }

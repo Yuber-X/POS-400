@@ -120,7 +120,6 @@
             this.txtapmaterno.Name = "txtapmaterno";
             this.txtapmaterno.Size = new System.Drawing.Size(249, 24);
             this.txtapmaterno.TabIndex = 7;
-            this.txtapmaterno.TextChanged += new System.EventHandler(this.txtapmaterno_TextChanged);
             // 
             // txtappaterno
             // 
@@ -129,7 +128,6 @@
             this.txtappaterno.Name = "txtappaterno";
             this.txtappaterno.Size = new System.Drawing.Size(249, 24);
             this.txtappaterno.TabIndex = 6;
-            this.txtappaterno.TextChanged += new System.EventHandler(this.txtappaterno_TextChanged);
             // 
             // txtnombres
             // 
@@ -159,7 +157,6 @@
             this.label4.Size = new System.Drawing.Size(96, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Ap.Materno:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -170,7 +167,6 @@
             this.label3.Size = new System.Drawing.Size(93, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ap.Paterno:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -202,7 +198,6 @@
             this.dgvclientes.Size = new System.Drawing.Size(457, 406);
             this.dgvclientes.TabIndex = 1;
             this.dgvclientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvclientes_CellClick);
-            this.dgvclientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvclientes_CellContentClick);
             // 
             // label5
             // 
@@ -225,6 +220,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormClientes";

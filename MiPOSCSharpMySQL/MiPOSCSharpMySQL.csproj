@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuracion\CConexion.cs" />
+    <Compile Include="Configuracion\SesionActual.cs" />
     <Compile Include="Controlador\ControladorCliente.cs" />
     <Compile Include="Controlador\ControladorProducto.cs" />
     <Compile Include="Controlador\ControladorReporte.cs" />
@@ -192,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormClientes.resx">
       <DependentUpon>FormClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FormCuadre.resx">
+      <DependentUpon>FormCuadre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormProductos.resx">
       <DependentUpon>FormProductos.cs</DependentUpon>

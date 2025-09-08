@@ -19,26 +19,13 @@ namespace MiPOSCSharpMySQL.Formularios
             objetoProducto.MostrarProductos(dgvproductos);
         }
 
-        private void dgvproductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-        private void txtid_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void FormProductos_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        /*------------------------------------------------------------------------------------------------------*/
-
         private void btneliminar_Click(object sender, EventArgs e)
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
             objetoProducto.EliminarProducto(txtid);
             objetoProducto.MostrarProductos(dgvproductos);
             objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock,txtdescripcion, dtpFechaCaducidad);
+            btnguardar.Enabled = true;
         }
 
         private void btnmodificar_Click(object sender, EventArgs e)
@@ -47,12 +34,14 @@ namespace MiPOSCSharpMySQL.Formularios
             objetoProducto.ModificarProducto(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion, dtpFechaCaducidad);
             objetoProducto.MostrarProductos(dgvproductos);
             objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio,txtstock, txtdescripcion, dtpFechaCaducidad);
+            btnguardar.Enabled = true;
         }
 
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
             objetoProducto.LimpiarCampos(txtid, txtnombreproducto, txtprecio, txtstock, txtdescripcion, dtpFechaCaducidad);
+            btnguardar.Enabled = true;
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
@@ -67,6 +56,7 @@ namespace MiPOSCSharpMySQL.Formularios
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
             objetoProducto.SeleccionarProducto(dgvproductos, txtid, txtnombreproducto, txtprecio, txtstock,txtdescripcion, dtpFechaCaducidad);
+            btnguardar.Enabled = false;
         }
 
     }

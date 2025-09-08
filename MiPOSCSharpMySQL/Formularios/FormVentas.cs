@@ -37,77 +37,7 @@ namespace MiPOSCSharpMySQL.Formularios
 
             VerificarProductosCaducidad();
 
-            //Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
-            //Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
-            //objetoProducto.MostrarProductos(dgvProducto);
-            //objetoCliente.MostrarClientes(dgvCliente);
         }
-
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void groupBox6_Enter(object sender, EventArgs e)
-        {
-
-        }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label7_Click_1(object sender, EventArgs e)
-        {
-
-        }
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void dgvCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void groupBox7_Enter(object sender, EventArgs e)
-        {
-
-        }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-        private void txtPrecioVentaFinal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void dgvCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void txtApPaterno_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        /*----------------------------------------------------------------------------------------------------------------------*/
-
 
         private void txtBuscarCliente_TextChanged(object sender, EventArgs e)
         {
@@ -148,7 +78,7 @@ namespace MiPOSCSharpMySQL.Formularios
         {
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
             objetoVenta.PasarProductosVenta(dgvCarrito, txtIdProducto, txtNombreProducto, txtPrecioVentaFinal, txtStockVenta, txtStock);
-            objetoVenta.CalcularTotal(dgvCarrito, lbIva, lbTotal);
+            objetoVenta.CalcularTotal(dgvCarrito, lbSubtotal, lbItbis, lbTotal);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -159,14 +89,6 @@ namespace MiPOSCSharpMySQL.Formularios
 
         private async void btnFacturar_Click(object sender, EventArgs e)
         {
-            //Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
-            //objetoVenta.CrearFactura(txtIdCliente);
-
-            //objetoVenta.RealizarVentaV2(dgvCarrito,idFactura:0); //OJO
-
-            //objetoVenta.LimpiarCamposVenta(txtBuscarCliente, dgvCliente,txtBuscarProducto,dgvProducto,txtIdCliente,txtNombreCliente, txtApPaterno, txtApMaterno, 
-            //                               txtIdProducto, txtNombreProducto, txtPrecio, txtStock, txtPrecioVentaFinal, txtStockVenta, dgvCarrito, lbIva, lbTotal);
-            //objetoVenta.MostrarUltimaFactura(lbUltimaFactura);
 
             Controlador.ControladorReporte objetoReporte = new Controlador.ControladorReporte();
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
@@ -174,7 +96,7 @@ namespace MiPOSCSharpMySQL.Formularios
             // Verifico si el usuario selecciono el metodo de pago
             if (metodoPago.CheckedItems.Count == 0)
             {
-                MessageBox.Show("⚠ Debe seleccionar un método de pago (Efectivo o Tarjeta).",
+                MessageBox.Show(" Debe seleccionar un método de pago (Efectivo o Tarjeta).",
                                  "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -196,7 +118,7 @@ namespace MiPOSCSharpMySQL.Formularios
             // Limpiamos la pantalla
             objetoVenta.LimpiarCamposVenta(txtBuscarCliente, dgvCliente, txtBuscarProducto, dgvProducto, txtIdCliente, txtNombreCliente,
                                             txtApPaterno, txtApMaterno, txtIdProducto, txtNombreProducto, txtPrecio, txtStock,
-                                            txtPrecioVentaFinal, txtStockVenta, dgvCarrito, lbIva, lbTotal);
+                                            txtPrecioVentaFinal, txtStockVenta, dgvCarrito, lbItbis, lbSubtotal, lbTotal);
 
             // Mostramos la última factura generada
             objetoVenta.MostrarUltimaFactura(lbUltimaFactura);
@@ -208,6 +130,8 @@ namespace MiPOSCSharpMySQL.Formularios
             if (long.TryParse(lbUltimaFactura.Text, out long ultimaFactura))
             {
                 objetoReporte.ImprimirFactura(ultimaFactura); // Ahora acepta long directamente
+                //objetoReporte.VistaPreviaFactura(ultimaFactura);
+
             }
             else
             {

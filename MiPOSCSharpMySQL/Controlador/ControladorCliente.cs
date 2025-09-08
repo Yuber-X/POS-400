@@ -168,6 +168,7 @@ namespace MiPOSCSharpMySQL.Controlador
             nombre.Text = "";
             appaterno.Text = "";
             apmaterno.Text = "";
+            
         }
 
         public void EliminarCliente(TextBox id)

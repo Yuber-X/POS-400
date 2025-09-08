@@ -70,10 +70,10 @@
             // lblProductosTotal
             // 
             this.lblProductosTotal.AutoSize = true;
-            this.lblProductosTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductosTotal.Location = new System.Drawing.Point(237, 548);
+            this.lblProductosTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductosTotal.Location = new System.Drawing.Point(227, 544);
             this.lblProductosTotal.Name = "lblProductosTotal";
-            this.lblProductosTotal.Size = new System.Drawing.Size(103, 18);
+            this.lblProductosTotal.Size = new System.Drawing.Size(124, 24);
             this.lblProductosTotal.TabIndex = 3;
             this.lblProductosTotal.Text = "-------------------";
             // 
@@ -87,6 +87,7 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormAlmacen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Almacen";

@@ -16,9 +16,8 @@ namespace MiPOSCSharpMySQL.Formularios
         {
             InitializeComponent();
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
-            objetoProducto.MostrarProductos(dgvproductos);
+            objetoProducto.MostrarProductos(dgvproductos, lblProductosTotal);
             dgvproductos.ReadOnly = true;
         }
-
     }
 }

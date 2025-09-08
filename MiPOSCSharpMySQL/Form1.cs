@@ -27,15 +27,20 @@ namespace MiPOSCSharpMySQL
 
             Configuracion.CConexion objetoConexcion = new Configuracion.CConexion();
             objetoConexcion.estableceConexion();
-            
+
+            timerSesion = new Timer();
+            timerSesion.Interval = 60000; 
+            timerSesion.Tick += timer1_Tick;
+            timerSesion.Start();
 
         }
+
+        // ====================== PERMISOS ======================
 
         private void Form1_Load(object sender, EventArgs e)
         {
             AplicarPermisos();
         }
-
         private void SetAllMenuItemsEnabled(ToolStripItemCollection items, bool enabled)
         {
             foreach (ToolStripItem it in items)
@@ -48,7 +53,6 @@ namespace MiPOSCSharpMySQL
                 }
             }
         }
-
         private void AplicarPermisos()
         {
             // 1) Apaga todo
@@ -74,23 +78,22 @@ namespace MiPOSCSharpMySQL
 
             // 4) Mapa clave -> item
             var mapa = new Dictionary<string, ToolStripMenuItem>()
-    {
-        { "formVentas", venderToolStripMenuItem },
-        { "formClientes", clientesToolStripMenuItem },
-        { "formProductos", productoToolStripMenuItem },
-        { "formCaducidad", caducidadToolStripMenuItem },
-        { "formBuscarComprobante", buscarComprobanteToolStripMenuItem },
-        { "formCuadre", cuadreToolStripMenuItem },
-        { "formRegistroPorFecha", registroToolStripMenuItem },
-        { "formAlmacen", almacenToolStripMenuItem },
-        { "formAdminMode", adminToolStripMenuItem },
-    };
+            {
+                { "formVentas", venderToolStripMenuItem },
+                { "formClientes", clientesToolStripMenuItem },
+                { "formProductos", productoToolStripMenuItem },
+                { "formCaducidad", caducidadToolStripMenuItem },
+                { "formBuscarComprobante", buscarComprobanteToolStripMenuItem },
+                { "formCuadre", cuadreToolStripMenuItem },
+                { "formRegistroPorFecha", registroToolStripMenuItem },
+                { "formAlmacen", almacenToolStripMenuItem },
+                { "formAdminMode", adminToolStripMenuItem },
+            };
 
             foreach (var clave in permisos)
                 if (mapa.TryGetValue(clave, out var item))
                     item.Enabled = true;
         }
-
         private HashSet<string> PermisosUsuarioPorClave(string nombreUsuario)
         {
             var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -116,7 +119,7 @@ namespace MiPOSCSharpMySQL
         }
 
 
-        /*MENUSTRIP*/
+        // ====================== MENUSTRIP ======================
 
         private void almacenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -126,9 +129,7 @@ namespace MiPOSCSharpMySQL
         }
         private void venderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Formularios.FormVentas objetoFormVentas = new Formularios.FormVentas();
-            AbrirFormulario(new FormVentas());
-             //objetoFormVentas.Show();
+            AbrirUnicoFormulario<FormVentas>();
         }
         private void registroToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -138,9 +139,7 @@ namespace MiPOSCSharpMySQL
         }
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Formularios.FormClientes objetoFormClientes = new Formularios.FormClientes();
-            AbrirFormulario(new FormClientes());
-            //objetoFormClientes.Show();
+            AbrirUnicoFormulario<FormClientes>();
         }
         private void almacenToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -154,12 +153,38 @@ namespace MiPOSCSharpMySQL
             AbrirFormulario(new FormBuscarComprobante());
             //objetoFormBuscarComprobante.Show();
         }
-        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void caducidadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Formularios.FormCaducidad objetoFormCaducidad = new Formularios.FormCaducidad();
+            AbrirFormulario(new FormCaducidad());
+            //objetoFormProductos.Show();
+        }
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Cerramos la sesión activa
+            timerSesion.Stop(); // Detenemos el pulso
 
-            MessageBox.Show("Llama a los siguientes encargados del sistema de ventas: Yuber Ern. Santana Polanco Whatsapp: Yuber Ern. Santana Lizardo Whatsapp: 849-438-0242");
+            CerrarSesion(Configuracion.SesionActual.IdUsuario);
+
+            FormInicioSesion login = new FormInicioSesion();
+            login.Show();
+            this.Close();
+        }
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAdminMode formAdmin = new FormAdminMode();
+            AbrirFormulario(formAdmin);
 
         }
+        private void cuadreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCuadre formCuadre = new FormCuadre();
+            AbrirFormulario(formCuadre);
+        }
+
+
+        // ====================== OTROS ======================
+
         private void AbrirFormulario(Form formularioHijo)
         {
             // Cerrar el formulario actual si hay uno abierto
@@ -175,26 +200,78 @@ namespace MiPOSCSharpMySQL
          // formularioHijo.Dock = DockStyle.Fill; // Hace que ocupe todo el espacio disponible
             formularioHijo.Show();
         }
-        private void caducidadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Formularios.FormCaducidad objetoFormCaducidad = new Formularios.FormCaducidad();
-            AbrirFormulario(new FormCaducidad());
-            //objetoFormProductos.Show();
+            CerrarSesion(Configuracion.SesionActual.IdUsuario);
         }
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CerrarSesion(long idUsuario)
         {
-            //RegistrarTiempoSesion();
+            try
+            {
+                Configuracion.CConexion conexion = new Configuracion.CConexion();
+                using (MySqlConnection con = conexion.estableceConexion())
+                {
+                    string sql = @"UPDATE userSession 
+                           SET logoutTime = NOW() 
+                           WHERE fkUsuario = @id 
+                           AND logoutTime IS NULL
+                           ORDER BY loginTime DESC
+                           LIMIT 1";
+                    MySqlCommand cmd = new MySqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("@id", idUsuario);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cerrar sesión: " + ex.Message);
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var con = new Configuracion.CConexion().estableceConexion())
+                {
+                    string sql = @"
+                    UPDATE userSession 
+                    SET logoutTime = NOW() 
+                    WHERE fkUsuario = @id 
+                    AND logoutTime IS NULL
+                    ORDER BY loginTime DESC
+                    LIMIT 1";
 
-            // Volver al login
-            FormInicioSesion login = new FormInicioSesion();
-            login.Show();
-            this.Hide();
+                    using (var cmd = new MySqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", Configuracion.SesionActual.IdUsuario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch
+            {
+               
+            }
         }
-        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AbrirUnicoFormulario<T>() where T : Form, new()
         {
-            FormAdminMode mode = new FormAdminMode();
-            mode.Show();
+            // Ver si ya existe una instancia de ese tipo
+            Form existente = this.MdiChildren.FirstOrDefault(f => f is T);
 
+            if (existente != null)
+            {
+                // Ya está abierto → lo traemos al frente
+                existente.BringToFront();
+                existente.Activate();
+            }
+            else
+            {
+                // No existe → lo creamos
+                T formulario = new T();
+                formulario.MdiParent = this;
+                formulario.Show();
+            }
         }
+
     }
 }

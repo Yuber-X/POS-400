@@ -242,17 +242,17 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(169, 418);
+            this.label11.Location = new System.Drawing.Point(169, 416);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 22);
+            this.label11.Size = new System.Drawing.Size(121, 22);
             this.label11.TabIndex = 7;
-            this.label11.Text = "IVA (18%):";
+            this.label11.Text = "ITBIS (18%):";
             // 
             // lbliva
             // 
             this.lbliva.AutoSize = true;
             this.lbliva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbliva.Location = new System.Drawing.Point(275, 419);
+            this.lbliva.Location = new System.Drawing.Point(296, 418);
             this.lbliva.Name = "lbliva";
             this.lbliva.Size = new System.Drawing.Size(44, 20);
             this.lbliva.TabIndex = 8;
@@ -262,7 +262,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(345, 416);
+            this.label13.Location = new System.Drawing.Point(372, 416);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label13.Size = new System.Drawing.Size(86, 24);
@@ -273,7 +273,7 @@
             // 
             this.lbltotal.AutoSize = true;
             this.lbltotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotal.Location = new System.Drawing.Point(437, 419);
+            this.lbltotal.Location = new System.Drawing.Point(455, 419);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.Size = new System.Drawing.Size(89, 20);
             this.lbltotal.TabIndex = 10;
@@ -319,6 +319,7 @@
             this.Controls.Add(this.lblnumerofactura);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormBuscarComprobante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormBuscarComprobante";

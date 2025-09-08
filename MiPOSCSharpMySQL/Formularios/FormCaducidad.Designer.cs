@@ -224,7 +224,6 @@
             this.dgvproductos.Size = new System.Drawing.Size(637, 379);
             this.dgvproductos.TabIndex = 6;
             this.dgvproductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellClick);
-            this.dgvproductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellContentClick);
             this.dgvproductos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvproductos_CellFormatting);
             // 
             // FormCaducidad
@@ -236,10 +235,11 @@
             this.Controls.Add(this.dgvproductos);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormCaducidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormCaducidad";
-            this.Load += new System.EventHandler(this.FormCaducidad_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).EndInit();

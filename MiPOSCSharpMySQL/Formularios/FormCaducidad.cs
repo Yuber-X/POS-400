@@ -36,20 +36,9 @@ namespace MiPOSCSharpMySQL.Formularios
             dgvproductos.Columns["fechaCaducidad"].HeaderText = "Caducidad";
             dgvproductos.Columns["mesesRestantes"].HeaderText = "Meses Restantes";
 
-
-
         }
 
-        private void FormCaducidad_Load(object sender, EventArgs e)
-        {
 
-        }
-        private void dgvproductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-  //---------------------------------------------------------------------------------------------------
         private void dgvproductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();

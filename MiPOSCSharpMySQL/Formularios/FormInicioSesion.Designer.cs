@@ -108,7 +108,7 @@
             // btnAcceder
             // 
             this.btnAcceder.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcceder.Location = new System.Drawing.Point(87, 296);
+            this.btnAcceder.Location = new System.Drawing.Point(87, 299);
             this.btnAcceder.Name = "btnAcceder";
             this.btnAcceder.Size = new System.Drawing.Size(92, 36);
             this.btnAcceder.TabIndex = 4;
@@ -154,7 +154,6 @@
             this.Name = "FormInicioSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sesión";
-            this.Load += new System.EventHandler(this.InicioSesion_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

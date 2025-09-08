@@ -72,7 +72,6 @@
             this.dgvproductos.Size = new System.Drawing.Size(581, 401);
             this.dgvproductos.TabIndex = 4;
             this.dgvproductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellClick);
-            this.dgvproductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproductos_CellContentClick);
             // 
             // groupBox1
             // 
@@ -211,7 +210,6 @@
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(227, 24);
             this.txtid.TabIndex = 4;
-            this.txtid.TextChanged += new System.EventHandler(this.txtid_TextChanged);
             // 
             // label4
             // 
@@ -263,10 +261,10 @@
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProductos";
-            this.Load += new System.EventHandler(this.FormProductos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvproductos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

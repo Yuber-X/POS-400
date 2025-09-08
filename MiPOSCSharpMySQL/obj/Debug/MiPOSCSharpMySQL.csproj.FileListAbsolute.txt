@@ -100,3 +100,4 @@ C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCShar
 C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.Formularios.FormAdminMode.resources
 C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.Formularios.FormInicioSesion.resources
 C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.exe.config
+C:\Users\lizar\Desktop\Yu\Code\PT-Venta-V2\MiPOSCSharpMySQL\obj\Debug\MiPOSCSharpMySQL.Formularios.FormCuadre.resources

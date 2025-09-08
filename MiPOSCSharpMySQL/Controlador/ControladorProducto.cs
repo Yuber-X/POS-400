@@ -13,9 +13,8 @@ namespace MiPOSCSharpMySQL.Controlador
 {
     internal class ControladorProducto
     {
-        public void MostrarProductos(DataGridView tablaTotalProductos)
+        public void MostrarProductos(DataGridView tablaTotalProductos, Label PTotal = null)
         {
-
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
             Modelos.ModeloProducto objetoProducto = new Modelos.ModeloProducto();
 
@@ -28,10 +27,9 @@ namespace MiPOSCSharpMySQL.Controlador
             modelo.Columns.Add("Descripcion", typeof(string));
             modelo.Columns.Add("Caducidad", typeof(DateTime));
 
-
             tablaTotalProductos.DataSource = modelo;
 
-            string sql = "select idProducto, nombre, precioProducto, stock, descripcionProducto, fechaCaducidad from producto;";
+            string sql = "SELECT idProducto, nombre, precioProducto, stock, descripcionProducto, fechaCaducidad FROM producto;";
 
             try
             {
@@ -41,7 +39,6 @@ namespace MiPOSCSharpMySQL.Controlador
                 MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
 
                 DataSet ds = new DataSet();
-
                 adaptador.Fill(ds);
 
                 DataTable dt = ds.Tables[0];
@@ -63,21 +60,24 @@ namespace MiPOSCSharpMySQL.Controlador
                         objetoProducto.FechaCaducidad = Convert.ToDateTime(row["fechaCaducidad"]);
                     }
 
-                    // Si la fecha es null, el DataTable admite DateTime, pero se puede mandar DateTime.MinValue o DBNull
-                    // Para mostrar limpio en la grilla, usare DBNull si no hay fecha:
                     object fechaParaTabla = (object)objetoProducto.FechaCaducidad ?? DBNull.Value;
 
                     modelo.Rows.Add(
-                        objetoProducto.IdProducto, 
-                        objetoProducto.NombreProducto, 
-                        objetoProducto.PrecioProducto, 
-                        objetoProducto.StockProducto, 
+                        objetoProducto.IdProducto,
+                        objetoProducto.NombreProducto,
+                        objetoProducto.PrecioProducto,
+                        objetoProducto.StockProducto,
                         objetoProducto.Descripcion,
                         fechaParaTabla
                     );
                 }
 
                 tablaTotalProductos.DataSource = modelo;
+
+                if (PTotal != null)
+                {
+                    PTotal.Text = dt.Rows.Count.ToString();
+                }
             }
             catch (Exception e)
             {

@@ -22,9 +22,7 @@ namespace MiPOSCSharpMySQL.Formularios
             txtId.ReadOnly = true;
         }
 
-
-        //--------------------------------------------------------------------------------------
-
+        // FORM
         private void FormAdminMode_Load(object sender, EventArgs e)
         {
             Controlador.ControladorUsuario ctrlUsuario = new Controlador.ControladorUsuario();

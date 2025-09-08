@@ -20,35 +20,8 @@ namespace MiPOSCSharpMySQL.Formularios
              Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
              objetoCliente.MostrarClientes(dgvclientes);
 
-            txtid.ReadOnly = true;
+             txtid.ReadOnly = true;
         }
-
-
-
-
-        private void dgvclientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void txtappaterno_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void txtapmaterno_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        /*-----------------------------------------------------------------------------------------------------------*/
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
@@ -62,6 +35,7 @@ namespace MiPOSCSharpMySQL.Formularios
         {
             Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
             objetoCliente.Seleccionar(dgvclientes, txtid,txtnombres,txtappaterno,txtapmaterno);
+            btnguardar.Enabled = false;
         }
 
         private void btnmodificar_Click(object sender, EventArgs e)
@@ -70,13 +44,14 @@ namespace MiPOSCSharpMySQL.Formularios
             objetoCliente.ModificarCliente(txtid, txtnombres, txtappaterno, txtapmaterno);
             objetoCliente.MostrarClientes(dgvclientes);
             objetoCliente.LimpiarCampos(txtid, txtnombres,txtapmaterno, txtappaterno);
+            btnguardar.Enabled = true;
         }
 
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
             Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
             objetoCliente.LimpiarCampos(txtid, txtnombres, txtappaterno, txtapmaterno);
-
+            btnguardar.Enabled = true;
         }
 
         private void btneliminar_Click(object sender, EventArgs e)
@@ -85,6 +60,7 @@ namespace MiPOSCSharpMySQL.Formularios
             objetoCliente.EliminarCliente(txtid);
             objetoCliente.MostrarClientes(dgvclientes);
             objetoCliente.LimpiarCampos(txtid, txtnombres, txtappaterno, txtapmaterno);
+            btnguardar.Enabled = true;
         }
 
         private void txtid_Click(object sender, EventArgs e)

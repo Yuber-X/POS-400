@@ -1,16 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Drawing;
-using System.Drawing.Printing;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using System.Data.SqlClient;
 
 namespace MiPOSCSharpMySQL.Controlador
 {
@@ -19,53 +20,6 @@ namespace MiPOSCSharpMySQL.Controlador
         Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
         private Bitmap facturaImagen;
 
-     /* public void MostrarDatosFactura(TextBox numeroFactura, Label numeroFacturaEncontrado, Label fechaFacturaEncontrado,
-                                        Label nombreClienteEncontrado, Label appaternoEncontrado, Label apmaternoEncontrado) 
-        {
-
-            Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
-
-            string consulta = "select factura.idfactura, factura.fechaFactura, cliente.nombres, cliente.appaterno, cliente.appmaterno from factura INNER JOIN cliente ON cliente.idCliente = factura.fkcliente WHERE factura.idFactura = @idfactura;";
-
-            try
-            {
-                MySqlConnection conexion = objetoConexion.estableceConexion();
-
-                MySqlCommand comando = new MySqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@idFactura", long.Parse(numeroFactura.Text));
-
-                MySqlDataReader reader = comando.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    numeroFacturaEncontrado.Text = reader["idfactura"].ToString();
-                    fechaFacturaEncontrado.Text = DateTime.Parse(reader["fechaFactura"].ToString()).ToString("dd-MM-yyyy");
-                    nombreClienteEncontrado.Text = reader["nombres"].ToString();
-                    appaternoEncontrado.Text = reader["appaterno"].ToString();
-                    apmaternoEncontrado.Text = reader["appmaterno"].ToString();
-                }
-                else
-                {
-                    numeroFacturaEncontrado.Text = "-------";
-                    fechaFacturaEncontrado.Text = "-------";
-                    nombreClienteEncontrado.Text = "-------";
-                    appaternoEncontrado.Text = "-------";
-                    apmaternoEncontrado.Text = "-------";
-
-                    MessageBox.Show("No se encontró la factura");
-                }
-            }
-            catch (Exception e)
-            {
-
-                MessageBox.Show("Error al Mostrar Factura: " + e.ToString());
-
-            }
-            finally
-            {
-                objetoConexion.CerrarConexion();
-            }
-        } */
         public void MostrarVentaFactura(TextBox numeroFactura, DataGridView tablaTotalProductos, Label iva, Label total)
         {
 
@@ -127,8 +81,6 @@ namespace MiPOSCSharpMySQL.Controlador
                 objetoConexion.CerrarConexion();
             }
         }
-
-        /*-----------------------------------------------------------------------------------------------------------------------------------*/
 
         public void MostrarVentaPorFecha(DateTimePicker desde, DateTimePicker hasta, DataGridView tablaVenta, Label totalGenaral)
         {
@@ -210,8 +162,6 @@ namespace MiPOSCSharpMySQL.Controlador
             }
         }
 
-        /*-----------------------------------------------------------------------------------------------------------------------------------*/
-
         public DataTable ObtenerFactura(long numeroFactura)
         {
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
@@ -281,27 +231,112 @@ namespace MiPOSCSharpMySQL.Controlador
 
         private void GenerarImagenFactura(DataTable datosFactura)
         {
-            int width = 400;
-            int height = 200 + (datosFactura.Rows.Count * 20);
-            facturaImagen = new Bitmap(width, height);
+            int width = 300; // ancho estándar ticket (80mm)
+            int y = 10;
+            facturaImagen = new Bitmap(width, 600 + (datosFactura.Rows.Count * 20));
+
             using (Graphics g = Graphics.FromImage(facturaImagen))
             {
                 g.Clear(Color.White);
-                Font font = new Font("Arial", 10);
+                Font font = new Font("Consolas", 9);
+                Font fontBold = new Font("Consolas", 9, FontStyle.Bold);
                 Brush brush = Brushes.Black;
 
-                g.DrawString("Factura ID: " + datosFactura.Rows[0]["idFactura"].ToString(), font, brush, 10, 10);
-                g.DrawString("Cliente: " + datosFactura.Rows[0]["nombres"] + " " + datosFactura.Rows[0]["appaterno"] + " " + datosFactura.Rows[0]["appmaterno"], font, brush, 10, 30);
+                // ---------- LOGO COMO MARCA DE AGUA EN EL CENTRO ----------
+                try
+                {
+                    Image logo = Image.FromFile("C:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Resources\\logo.jpgC:\\Users\\lizar\\Desktop\\Yu\\Code\\PT-Venta-V2\\MiPOSCSharpMySQL\\Resources\\logo.jpg"); // ⚠️ pon aquí la ruta correcta del logo
 
-                int y = 50;
-                g.DrawString("Productos:", font, brush, 10, y);
-                y += 20;
+                    // Hacemos el logo transparente
+                    ColorMatrix cm = new ColorMatrix();
+                    cm.Matrix33 = 0.08f; // Transparencia: 0.05 = muy tenue, 0.2 = más visible
+                    ImageAttributes ia = new ImageAttributes();
+                    ia.SetColorMatrix(cm, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                    // Posición: centro de la factura
+                    int logoSize = 200;
+                    int logoX = (width - logoSize) / 2;
+                    int logoY = (facturaImagen.Height - logoSize) / 2;
+
+                    g.DrawImage(logo, new Rectangle(logoX, logoY, logoSize, logoSize),
+                                0, 0, logo.Width, logo.Height,
+                                GraphicsUnit.Pixel, ia);
+                }
+                catch
+                {
+                    // si no hay logo, seguimos sin errores
+                }
+
+                // ---------- ENCABEZADO ----------
+                g.DrawString("BOTI FARMA EL MAMON", fontBold, brush, 10, y); y += 20;
+                g.DrawString("RNC: 123456789", font, brush, 10, y); y += 15;
+                g.DrawString("Tel: +1 809-353-4924", font, brush, 10, y); y += 15;
+                g.DrawString("Direccion: Santo Domingo, RD", font, brush, 10, y); y += 20;
+
+                g.DrawLine(Pens.Black, 0, y, width, y); y += 10;
+
+                // ---------- INFO FACTURA ----------
+                g.DrawString($"Factura: {datosFactura.Rows[0]["idFactura"]}", font, brush, 10, y); y += 15;
+                g.DrawString($"Cliente: {datosFactura.Rows[0]["nombres"]} {datosFactura.Rows[0]["appaterno"]} {datosFactura.Rows[0]["appmaterno"]}", font, brush, 10, y); y += 15;
+                g.DrawString($"Fecha: {DateTime.Now:dd/MM/yyyy HH:mm}", font, brush, 10, y); y += 20;
+
+                g.DrawLine(Pens.Black, 0, y, width, y); y += 10;
+
+                // ---------- TABLA PRODUCTOS ----------
+                g.DrawString("Cant  Desc         Precio   Subtot", fontBold, brush, 10, y); y += 20;
+
+                double subtotal = 0;
                 foreach (DataRow row in datosFactura.Rows)
                 {
-                    g.DrawString(row["nombre"] + " - Cant: " + row["cantidad"] + " - Precio: " + row["precioVenta"], font, brush, 10, y);
+                    int cantidad = Convert.ToInt32(row["cantidad"]);
+                    string nombre = row["nombre"].ToString();
+                    double precio = Convert.ToDouble(row["precioVenta"]);
+                    double lineaSubtotal = cantidad * precio;
+                    subtotal += lineaSubtotal;
+
+                    string linea = $"{cantidad,-4} {nombre,-10} {precio,6:N2} {lineaSubtotal,7:N2}";
+                    g.DrawString(linea, font, brush, 10, y);
                     y += 20;
                 }
-                g.DrawString("Total: $" + datosFactura.Rows[0]["TotalFinal"].ToString(), font, brush, 10, y + 10);
+
+                g.DrawLine(Pens.Black, 0, y, width, y); y += 10;
+
+                // ---------- TOTALES ----------
+                double itbis = subtotal * 0.18;
+                double total = subtotal + itbis;
+
+                g.DrawString($"Subtotal:   RD$ {subtotal:N2}", font, brush, 10, y); y += 20;
+                g.DrawString($"ITBIS 18%:  RD$ {itbis:N2}", font, brush, 10, y); y += 20;
+                g.DrawString($"TOTAL:      RD$ {total:N2}", fontBold, brush, 10, y); y += 30;
+
+                g.DrawLine(Pens.Black, 0, y, width, y); y += 15;
+
+                // ---------- PIE ----------
+                g.DrawString("¡Gracias por su compra!", font, brush, 50, y); y += 20;
+                g.DrawString("Software POS v1.0", font, brush, 60, y);
+            }
+        }
+
+        public void VistaPreviaFactura(long idFactura)
+        {
+            DataTable datosFactura = ObtenerDatosFactura(idFactura);
+            if (datosFactura.Rows.Count > 0)
+            {
+                GenerarImagenFactura(datosFactura);
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += new PrintPageEventHandler(PrintFactura);
+
+                // Vista previa en vez de imprimir directo
+                PrintPreviewDialog preview = new PrintPreviewDialog();
+                preview.Document = pd;
+                preview.Width = 800;
+                preview.Height = 600;
+
+                preview.ShowDialog(); 
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron datos para la factura.");
             }
         }
 

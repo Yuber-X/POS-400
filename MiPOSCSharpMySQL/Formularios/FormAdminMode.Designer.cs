@@ -294,6 +294,8 @@
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormAdminMode";
             this.Text = "FormAdminMode";
             this.Load += new System.EventHandler(this.FormAdminMode_Load);

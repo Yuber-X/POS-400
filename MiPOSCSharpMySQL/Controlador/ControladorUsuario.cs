@@ -121,7 +121,6 @@ namespace MiPOSCSharpMySQL.Controlador
         }
 
         // Permisos
-
         public DataTable ListarPermisos()
         {
             var con = new Configuracion.CConexion();

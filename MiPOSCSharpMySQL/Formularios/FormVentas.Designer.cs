@@ -76,9 +76,11 @@
             this.dgvCarrito = new System.Windows.Forms.DataGridView();
             this.label19 = new System.Windows.Forms.Label();
             this.lb22 = new System.Windows.Forms.Label();
-            this.lbIva = new System.Windows.Forms.Label();
+            this.lbItbis = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.btnFacturar = new System.Windows.Forms.Button();
+            this.lbSubtotal = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducto)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -137,7 +139,6 @@
             this.dgvCliente.Size = new System.Drawing.Size(509, 135);
             this.dgvCliente.TabIndex = 6;
             this.dgvCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellClick);
-            this.dgvCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellContentClick);
             // 
             // dgvProducto
             // 
@@ -190,7 +191,6 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Clientes Disponibles";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox2
             // 
@@ -235,7 +235,6 @@
             this.txtApPaterno.Name = "txtApPaterno";
             this.txtApPaterno.Size = new System.Drawing.Size(160, 20);
             this.txtApPaterno.TabIndex = 6;
-            this.txtApPaterno.TextChanged += new System.EventHandler(this.txtApPaterno_TextChanged);
             // 
             // txtNombreCliente
             // 
@@ -260,7 +259,6 @@
             this.label9.Size = new System.Drawing.Size(79, 16);
             this.label9.TabIndex = 3;
             this.label9.Text = "Ap. Materno";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label7
             // 
@@ -271,7 +269,6 @@
             this.label7.Size = new System.Drawing.Size(77, 16);
             this.label7.TabIndex = 2;
             this.label7.Text = "Ap. Paterno";
-            this.label7.Click += new System.EventHandler(this.label7_Click_1);
             // 
             // label2
             // 
@@ -282,7 +279,6 @@
             this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -293,7 +289,6 @@
             this.label1.Size = new System.Drawing.Size(64, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID Cliente";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox4
             // 
@@ -323,7 +318,6 @@
             this.groupBox6.TabIndex = 16;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Precio y Cantidad";
-            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // metodoPago
             // 
@@ -365,7 +359,6 @@
             this.txtPrecioVentaFinal.Name = "txtPrecioVentaFinal";
             this.txtPrecioVentaFinal.Size = new System.Drawing.Size(77, 20);
             this.txtPrecioVentaFinal.TabIndex = 4;
-            this.txtPrecioVentaFinal.TextChanged += new System.EventHandler(this.txtPrecioVentaFinal_TextChanged);
             // 
             // btnDeshabilitar
             // 
@@ -463,7 +456,6 @@
             this.label10.Size = new System.Drawing.Size(61, 16);
             this.label10.TabIndex = 3;
             this.label10.Text = "Cantidad";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label11
             // 
@@ -484,7 +476,6 @@
             this.label12.Size = new System.Drawing.Size(56, 16);
             this.label12.TabIndex = 1;
             this.label12.Text = "Nombre";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label13
             // 
@@ -495,7 +486,6 @@
             this.label13.Size = new System.Drawing.Size(77, 16);
             this.label13.TabIndex = 0;
             this.label13.Text = "ID Producto";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // groupBox7
             // 
@@ -510,7 +500,6 @@
             this.groupBox7.TabIndex = 16;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Resumen de venta";
-            this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
             // 
             // btnEliminar
             // 
@@ -562,43 +551,42 @@
             this.dgvCarrito.ReadOnly = true;
             this.dgvCarrito.Size = new System.Drawing.Size(969, 156);
             this.dgvCarrito.TabIndex = 0;
-            this.dgvCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarrito_CellContentClick);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(757, 610);
+            this.label19.Location = new System.Drawing.Point(83, 621);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(86, 18);
+            this.label19.Size = new System.Drawing.Size(102, 18);
             this.label19.TabIndex = 17;
-            this.label19.Text = "IVA (18%):";
+            this.label19.Text = "ITBIS (18%):";
             // 
             // lb22
             // 
             this.lb22.AutoSize = true;
             this.lb22.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb22.Location = new System.Drawing.Point(704, 628);
+            this.lb22.Location = new System.Drawing.Point(9, 640);
             this.lb22.Name = "lb22";
-            this.lb22.Size = new System.Drawing.Size(139, 24);
+            this.lb22.Size = new System.Drawing.Size(176, 24);
             this.lb22.TabIndex = 18;
-            this.lb22.Text = "Total a Pagar:";
+            this.lb22.Text = "SubTotal a Pagar:";
             // 
-            // lbIva
+            // lbItbis
             // 
-            this.lbIva.AutoSize = true;
-            this.lbIva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIva.Location = new System.Drawing.Point(849, 611);
-            this.lbIva.Name = "lbIva";
-            this.lbIva.Size = new System.Drawing.Size(69, 20);
-            this.lbIva.TabIndex = 19;
-            this.lbIva.Text = "------------";
+            this.lbItbis.AutoSize = true;
+            this.lbItbis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbItbis.Location = new System.Drawing.Point(191, 622);
+            this.lbItbis.Name = "lbItbis";
+            this.lbItbis.Size = new System.Drawing.Size(69, 20);
+            this.lbItbis.TabIndex = 19;
+            this.lbItbis.Text = "------------";
             // 
             // lbTotal
             // 
             this.lbTotal.AutoSize = true;
             this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotal.Location = new System.Drawing.Point(849, 632);
+            this.lbTotal.Location = new System.Drawing.Point(476, 637);
             this.lbTotal.Name = "lbTotal";
             this.lbTotal.Size = new System.Drawing.Size(69, 20);
             this.lbTotal.TabIndex = 20;
@@ -607,7 +595,7 @@
             // btnFacturar
             // 
             this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFacturar.Location = new System.Drawing.Point(376, 610);
+            this.btnFacturar.Location = new System.Drawing.Point(724, 616);
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(267, 47);
             this.btnFacturar.TabIndex = 21;
@@ -615,14 +603,36 @@
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
             // 
+            // lbSubtotal
+            // 
+            this.lbSubtotal.AutoSize = true;
+            this.lbSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSubtotal.Location = new System.Drawing.Point(191, 643);
+            this.lbSubtotal.Name = "lbSubtotal";
+            this.lbSubtotal.Size = new System.Drawing.Size(69, 20);
+            this.lbSubtotal.TabIndex = 23;
+            this.lbSubtotal.Text = "------------";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(331, 633);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(139, 24);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Total a Pagar:";
+            // 
             // FormVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 661);
+            this.ClientSize = new System.Drawing.Size(1015, 666);
+            this.Controls.Add(this.lbSubtotal);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.btnFacturar);
             this.Controls.Add(this.lbTotal);
-            this.Controls.Add(this.lbIva);
+            this.Controls.Add(this.lbItbis);
             this.Controls.Add(this.lb22);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.groupBox7);
@@ -632,6 +642,7 @@
             this.Controls.Add(this.label8);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormVentas";
@@ -703,9 +714,11 @@
         private System.Windows.Forms.Label lbUltimaFactura;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lb22;
-        private System.Windows.Forms.Label lbIva;
+        private System.Windows.Forms.Label lbItbis;
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Button btnFacturar;
         private System.Windows.Forms.CheckedListBox metodoPago;
+        private System.Windows.Forms.Label lbSubtotal;
+        private System.Windows.Forms.Label label20;
     }
 }

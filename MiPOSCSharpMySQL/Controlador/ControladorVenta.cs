@@ -13,7 +13,6 @@ using System.Numerics;
 using System.Collections;
 
 
-
 namespace MiPOSCSharpMySQL.Controlador
 {
     internal class ControladorVenta
@@ -203,7 +202,7 @@ namespace MiPOSCSharpMySQL.Controlador
         public void LimpiarCamposVenta(TextBox BuscarCliente, DataGridView tablaCliente , TextBox buscarProducto, DataGridView tablaProducto, 
                                        TextBox selectIdCliente, TextBox selectNombreCliente, TextBox selectAppaterno, TextBox selectApmaterno,
                                        TextBox selectIdProducto, TextBox selectNombreP, TextBox selectPrecioP, TextBox selectStock, 
-                                       TextBox precioVentaFinal, TextBox cantidadVenta, DataGridView tablaResumen, Label iva, Label totalPagar){
+                                       TextBox precioVentaFinal, TextBox cantidadVenta, DataGridView tablaResumen, Label iva, Label subTotalPagar, Label totalPagar){
             BuscarCliente.Text = "";
             tablaCliente.DataSource = null;
 
@@ -225,6 +224,7 @@ namespace MiPOSCSharpMySQL.Controlador
 
             tablaResumen.DataSource = null;
             iva.Text = "------------";
+            subTotalPagar.Text = "------------";
             totalPagar.Text = "------------";
 
         }
@@ -288,11 +288,12 @@ namespace MiPOSCSharpMySQL.Controlador
                 MessageBox.Show("Error al mostrar Datos: " + e.ToString());
             }
         }
-        public void CalcularTotal(DataGridView tablaResumen, Label IVA, Label totalPagar)
+        public void CalcularTotal(DataGridView tablaResumen, Label lblSubtotal, Label lblItbis, Label lblTotal)
         {
-            double totalSubtotal = 0;
-            double iva = 0.18;
-            double totalIva = 0;
+            double subtotal = 0;
+            double tasaItbis = 0.18; 
+            double montoItbis = 0;
+            double totalFinal = 0;
 
             NumberFormatInfo formato = new NumberFormatInfo();
             formato.NumberDecimalDigits = 2;
@@ -301,13 +302,16 @@ namespace MiPOSCSharpMySQL.Controlador
             {
                 if (row.Cells[4].Value != null)
                 {
-                    totalSubtotal += Convert.ToDouble(row.Cells[4].Value);
+                    subtotal += Convert.ToDouble(row.Cells[4].Value);
                 }
             }
-            totalIva = iva * totalSubtotal;
 
-            totalPagar.Text = totalSubtotal.ToString("N",formato);
-            IVA.Text = totalIva.ToString("N",formato);
+            montoItbis = subtotal * tasaItbis;
+            totalFinal = subtotal + montoItbis;
+
+            lblSubtotal.Text = subtotal.ToString("N", formato);
+            lblItbis.Text = montoItbis.ToString("N", formato);
+            lblTotal.Text = totalFinal.ToString("N", formato);
         }
         public void EliminarSeleccion(DataGridView tablaResumen)
         {
@@ -363,30 +367,6 @@ namespace MiPOSCSharpMySQL.Controlador
         //}
         public long CrearFacturaV2(TextBox codCliente, string metodoPago)
         {
-            //    Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
-            //    Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
-
-            //    string consulta = "INSERT INTO factura (fechaFactura, fkCliente) VALUES (CURDATE(), @fkCliente); SELECT LAST_INSERT_ID();";
-
-            //    try
-            //    {
-            //        objetoCliente.IdCliente = long.Parse(codCliente.Text);
-
-            //        using (MySqlConnection conexion = objetoConexion.estableceConexion())
-            //        using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
-            //        {
-            //            comando.Parameters.AddWithValue("@fkCliente", objetoCliente.IdCliente);
-
-            //            long idFactura = Convert.ToInt64(comando.ExecuteScalar()); // Obtenemos el ID de la factura creada
-            //            return idFactura;
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Error al crear factura: " + ex.Message);
-            //        return -1;
-            //    }
-
             long idFactura = -1;
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
 
@@ -394,14 +374,18 @@ namespace MiPOSCSharpMySQL.Controlador
             {
                 using (MySqlConnection conexion = objetoConexion.estableceConexion())
                 {
-                    string sql = "INSERT INTO factura (fechaFactura, fkCliente, metodoPago) " +
-                                 "VALUES (NOW(), @fkCliente, @metodoPago); SELECT LAST_INSERT_ID();";
+                    string sql = @"INSERT INTO factura (fechaFactura, fkCliente, metodoPago, fkUsuario) 
+                           VALUES (NOW(), @fkCliente, @metodoPago, @usuario); 
+                           SELECT LAST_INSERT_ID();";
 
-                    MySqlCommand comando = new MySqlCommand(sql, conexion);
-                    comando.Parameters.AddWithValue("@fkCliente", codCliente.Text);
-                    comando.Parameters.AddWithValue("@metodoPago", metodoPago);
+                    using (MySqlCommand comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@fkCliente", codCliente.Text);
+                        comando.Parameters.AddWithValue("@metodoPago", metodoPago);
+                        comando.Parameters.AddWithValue("@usuario", Configuracion.SesionActual.IdUsuario); // 👈 aquí usamos el usuario logueado
 
-                    idFactura = Convert.ToInt64(comando.ExecuteScalar());
+                        idFactura = Convert.ToInt64(comando.ExecuteScalar());
+                    }
                 }
             }
             catch (Exception e)
@@ -414,13 +398,12 @@ namespace MiPOSCSharpMySQL.Controlador
             }
 
             return idFactura;
-
         }
 
         //public void RealizarVenta(DataGridView tablaResumenVenta)
         //{
         //    Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
-            
+
         //    string consultaDetalle = "insert into detalle (fkfactura, fkproducto, cantidad, precioVenta) values ((select max(idfactura) from factura),@fkproducto,@cantidad,@precioVenta);";
         //    string consultaStock = "update producto set stock = stock - @cantidad where idproducto = @idproducto;";
 
