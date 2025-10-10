@@ -125,7 +125,7 @@
             this.groupBox2.Controls.Add(this.dgvResumenGeneral);
             this.groupBox2.Location = new System.Drawing.Point(12, 106);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(649, 475);
+            this.groupBox2.Size = new System.Drawing.Size(649, 503);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Resumen General";
@@ -144,7 +144,7 @@
             // 
             this.lblTotales.AutoSize = true;
             this.lblTotales.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotales.Location = new System.Drawing.Point(6, 433);
+            this.lblTotales.Location = new System.Drawing.Point(6, 446);
             this.lblTotales.Name = "lblTotales";
             this.lblTotales.Size = new System.Drawing.Size(167, 24);
             this.lblTotales.TabIndex = 3;
@@ -164,7 +164,7 @@
             this.groupBox3.Controls.Add(this.dgvDetalleUsuario);
             this.groupBox3.Location = new System.Drawing.Point(667, 351);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(506, 230);
+            this.groupBox3.Size = new System.Drawing.Size(506, 258);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalle de Facturas - Usuario Seleccionado";
@@ -174,7 +174,7 @@
             this.dgvDetalleUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetalleUsuario.Location = new System.Drawing.Point(6, 19);
             this.dgvDetalleUsuario.Name = "dgvDetalleUsuario";
-            this.dgvDetalleUsuario.Size = new System.Drawing.Size(494, 205);
+            this.dgvDetalleUsuario.Size = new System.Drawing.Size(494, 233);
             this.dgvDetalleUsuario.TabIndex = 0;
             // 
             // groupBox4
@@ -232,7 +232,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 591);
+            this.ClientSize = new System.Drawing.Size(1182, 621);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);

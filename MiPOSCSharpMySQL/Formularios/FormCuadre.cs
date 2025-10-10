@@ -195,11 +195,11 @@ namespace MiPOSCSharpMySQL.Formularios
                 decimal totalGeneral = Convert.ToDecimal(dt.Rows[0]["TotalGeneral"]);
 
                 // Guardamos en la variable de clase
-                totalesActual = $"Total Facturas: {totalFacturas}      ||     Total Vendido: {totalGeneral:C}";
+                totalesActual = $"Total Facturas: {totalFacturas}\nTotal Vendido: {totalGeneral:C}";
             }
             else
             {
-                totalesActual = "Total Facturas: 0     ||     Total Vendido: $0.00";
+                totalesActual = "Total Facturas: 0\nTotal Vendido: $0.00";
             }
 
             // Mostrar en el label
@@ -310,109 +310,112 @@ namespace MiPOSCSharpMySQL.Formularios
             ImprimirCuadre(true);
         }
         private void ImprimirCuadre(bool esReimpresion = false)
+        {
+            if (resumenGeneralActual == null || tiemposUsuariosActual == null)
             {
-                if (resumenGeneralActual == null || tiemposUsuariosActual == null)
+                MessageBox.Show("Debe generar el cuadre antes de imprimir.");
+                return;
+            }
+
+            PrintDocument doc = new PrintDocument();
+            doc.DocumentName = esReimpresion ? "Reimpresión de Cuadre" : "Cuadre del Día";
+            doc.DefaultPageSettings.PaperSize = new PaperSize("Ticket80mm", 302, 1200);
+            doc.DefaultPageSettings.Margins = new Margins(5, 5, 5, 5);
+
+            doc.PrintPage += (s, ev) =>
+            {
+                float y = 10;
+                float left = 5;
+                float width = 290; // margen seguro dentro del ticket
+                Font font = new Font("Consolas", 8);
+                Font fontBold = new Font("Consolas", 9, FontStyle.Bold);
+                Brush brush = Brushes.Black;
+
+                // ENCABEZADO
+                ev.Graphics.DrawString("BOTI FARMA EL MAMON", fontBold, brush, left, y); y += 20;
+                ev.Graphics.DrawString("Cuadre del Día", fontBold, brush, left, y); y += 20;
+                ev.Graphics.DrawString($"Fecha: {dtpFecha.Value:dd/MM/yyyy}", font, brush, left, y); y += 20;
+                ev.Graphics.DrawLine(Pens.Black, left, y, width, y); y += 10;
+
+                // RESUMEN GENERAL
+                ev.Graphics.DrawString("=== RESUMEN GENERAL ===", fontBold, brush, left, y); y += 20;
+                foreach (DataRow row in resumenGeneralActual.Rows)
                 {
-                    MessageBox.Show("Debe generar el cuadre antes de imprimir.");
-                    return;
+                    string linea = $"{row["Usuario"],-12} F:{row["CantidadFacturas"],2} T:{Convert.ToDecimal(row["TotalVendido"]):N2}";
+                    ev.Graphics.DrawString(linea, font, brush, left, y);
+                    y += 15;
                 }
 
-                PrintDocument doc = new PrintDocument();
-                doc.DocumentName = esReimpresion ? "Reimpresión de Cuadre" : "Cuadre del Día";
-                doc.PrintPage += (s, ev) =>
+                // TIEMPOS DE SESIÓN
+                y += 10;
+                ev.Graphics.DrawString("=== SESIONES ===", fontBold, brush, left, y); y += 20;
+                foreach (DataRow row in tiemposUsuariosActual.Rows)
                 {
-                    float y = 20;
-                    Font font = new Font("Arial", 10);
-                    Brush brush = Brushes.Black;
+                    string linea = $"{row["nombreUsuario"],-12} {row["TiempoActivo"]}";
+                    ev.Graphics.DrawString(linea, font, brush, left, y);
+                    y += 15;
+                }
 
-                    // Encabezado
-                    ev.Graphics.DrawString(doc.DocumentName, new Font("Arial", 14, FontStyle.Bold), brush, 20, y);
-                    y += 40;
-                    ev.Graphics.DrawString("Fecha: " + dtpFecha.Value.ToShortDateString(), font, brush, 20, y);
-                    y += 30;
-
-                    // Resumen General
-                    ev.Graphics.DrawString("=== RESUMEN GENERAL ===", font, brush, 20, y);
-                    y += 25;
-                    foreach (DataRow row in resumenGeneralActual.Rows)
+                // PRODUCTOS VENDIDOS
+                if (productosVendidosActual != null && productosVendidosActual.Rows.Count > 0)
+                {
+                    y += 10;
+                    ev.Graphics.DrawString("=== PRODUCTOS VENDIDOS ===", fontBold, brush, left, y); y += 20;
+                    foreach (DataRow row in productosVendidosActual.Rows)
                     {
-                        string linea = $"{row["Usuario"],-15} Facturas: {row["CantidadFacturas"],3} Total: {Convert.ToDecimal(row["TotalVendido"]):C}";
-                        ev.Graphics.DrawString(linea, font, brush, 20, y);
-                        y += 20;
+                        string linea = $"{row["Producto"],-10} x{row["Cantidad"],-3} RD${Convert.ToDecimal(row["Subtotal"]):N2}";
+                        ev.Graphics.DrawString(linea, font, brush, left, y);
+                        y += 15;
                     }
+                }
 
+                // FACTURAS
+                if (facturasDelDia != null && facturasDelDia.Rows.Count > 0)
+                {
+                    y += 10;
+                    ev.Graphics.DrawString("=== FACTURAS DEL DÍA ===", fontBold, brush, left, y); y += 20;
+                    int colCount = 0;
+                    string lineaFacturas = "";
+                    foreach (DataRow row in facturasDelDia.Rows)
+                    {
+                        lineaFacturas += row["idFactura"].ToString().PadLeft(5) + " ";
+                        colCount++;
+                        if (colCount == 5)
+                        {
+                            ev.Graphics.DrawString(lineaFacturas, font, brush, left, y);
+                            y += 15;
+                            lineaFacturas = "";
+                            colCount = 0;
+                        }
+                    }
+                    if (lineaFacturas.Length > 0)
+                    {
+                        ev.Graphics.DrawString(lineaFacturas, font, brush, left, y);
+                        y += 15;
+                    }
+                }
+
+                // TOTALES
+                y += 20;
+                ev.Graphics.DrawLine(Pens.Black, left, y, width, y); y += 10;
+                ev.Graphics.DrawString("=== TOTALES ===", fontBold, brush, left, y); y += 20;
+
+                // Mostramos los totales en dos líneas separadas
+                string[] lineasTotales = totalesActual.Split('\n');
+                foreach (string linea in lineasTotales)
+                {
+                    // Centramos el texto dentro del ancho del ticket
+                    SizeF size = ev.Graphics.MeasureString(linea, fontBold);
+                    float xCentered = left + (width - size.Width) / 2;
+                    ev.Graphics.DrawString(linea, fontBold, brush, xCentered, y);
                     y += 20;
+                }
+            };
 
-                    // Tiempos
-                    ev.Graphics.DrawString("=== TIEMPOS DE SESIÓN ===", font, brush, 20, y);
-                    y += 25;
-                    foreach (DataRow row in tiemposUsuariosActual.Rows)
-                    {
-                        string linea = $"{row["nombreUsuario"],-15} Tiempo Activo: {row["TiempoActivo"]}";
-                        ev.Graphics.DrawString(linea, font, brush, 20, y);
-                        y += 20;
-                    }
-
-                    y += 30;
-
-                    // Productos vendidos
-                    if (productosVendidosActual != null && productosVendidosActual.Rows.Count > 0)
-                    {
-                        ev.Graphics.DrawString("=== PRODUCTOS VENDIDOS ===", font, brush, 20, y);
-                        y += 25;
-                        foreach (DataRow row in productosVendidosActual.Rows)
-                        {
-                            string linea = $"{row["Producto"],-20} Cant: {row["Cantidad"],3}  Subtotal: {Convert.ToDecimal(row["Subtotal"]):C}";
-                            ev.Graphics.DrawString(linea, font, brush, 20, y);
-                            y += 20;
-                        }
-                        y += 20;
-                    }
-
-                    // Facturas del día
-                    if (facturasDelDia != null && facturasDelDia.Rows.Count > 0)
-                    {
-                        ev.Graphics.DrawString("=== FACTURAS DEL DÍA ===", font, brush, 20, y);
-                        y += 25;
-
-                        // Mostrar en columnas de 5 por línea para ahorrar espacio
-                        int colCount = 0;
-                        string lineaFacturas = "";
-                        foreach (DataRow row in facturasDelDia.Rows)
-                        {
-                            lineaFacturas += row["idFactura"].ToString().PadLeft(6) + " ";
-                            colCount++;
-
-                            if (colCount == 5)
-                            {
-                                ev.Graphics.DrawString(lineaFacturas, font, brush, 20, y);
-                                y += 20;
-                                lineaFacturas = "";
-                                colCount = 0;
-                            }
-                        }
-                        if (lineaFacturas.Length > 0)
-                        {
-                            ev.Graphics.DrawString(lineaFacturas, font, brush, 20, y);
-                            y += 20;
-                        }
-                    }
-
-                    // Totales (al final de todo)
-                    y += 40;
-                    ev.Graphics.DrawString("=== TOTALES ===", new Font("Arial", 11, FontStyle.Bold), brush, 20, y);
-                    y += 25;
-                    ev.Graphics.DrawString(totalesActual, new Font("Arial", 11, FontStyle.Bold), brush, 20, y);
-
-                };
-
-                PrintPreviewDialog preview = new PrintPreviewDialog();
-                preview.Document = doc;
-                preview.ShowDialog(); // Vista previa antes de imprimir
-
-                // Si quieres imprimir directo:
-                // doc.Print();
-            }
+            PrintPreviewDialog preview = new PrintPreviewDialog();
+            preview.Document = doc;
+            preview.ShowDialog();
+        }
 
     }
 }
