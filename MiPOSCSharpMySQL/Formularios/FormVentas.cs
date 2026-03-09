@@ -127,7 +127,7 @@ namespace MiPOSCSharpMySQL.Formularios
             await Task.Delay(1000);
 
             // Imprimimos la factura
-            if (long.TryParse(lbUltimaFactura.Text, out long ultimaFactura))
+            if (long.TryParse(lbUltimaFactura.Text, out long ultimaFactura)) 
             {
                 objetoReporte.ImprimirFactura(ultimaFactura); // Ahora acepta long directamente
                 //objetoReporte.VistaPreviaFactura(ultimaFactura);
