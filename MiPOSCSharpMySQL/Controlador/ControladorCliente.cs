@@ -21,13 +21,13 @@ namespace MiPOSCSharpMySQL.Controlador
             DataTable modelo = new DataTable();
 
             modelo.Columns.Add("ID", typeof(long));
-            modelo.Columns.Add("Nombre", typeof(string));
-            modelo.Columns.Add("Telefono", typeof(string));
-            modelo.Columns.Add("Direccion", typeof(string));
+            modelo.Columns.Add("Nombres", typeof(string));
+            modelo.Columns.Add("Ap.Paterno", typeof(string));
+            modelo.Columns.Add("Ap.Materno", typeof(string));
 
             tablaTotalClientes.DataSource = modelo;
 
-            string sql = "select idCliente, nombres, telefono, direccion from cliente;";
+            string sql = "select idcliente, nombres, appaterno, appmaterno from cliente;";
 
             try
             {
@@ -47,10 +47,10 @@ namespace MiPOSCSharpMySQL.Controlador
                 {
                     objetoCliente.IdCliente = Convert.ToInt64(row["idCliente"]);
                     objetoCliente.Nombre = row["nombres"].ToString();
-                    objetoCliente.Telefono = row["telefono"].ToString();
-                    objetoCliente.Direccion = row["direccion"].ToString();
+                    objetoCliente.ApPaterno = row["appaterno"].ToString();
+                    objetoCliente.ApMaterno = row["appmaterno"].ToString();
 
-                    modelo.Rows.Add(objetoCliente.IdCliente,objetoCliente.Nombre,objetoCliente.Telefono, objetoCliente.Direccion);
+                    modelo.Rows.Add(objetoCliente.IdCliente,objetoCliente.Nombre,objetoCliente.ApPaterno, objetoCliente.ApMaterno);
                 }
 
                 tablaTotalClientes.DataSource= modelo;
@@ -70,21 +70,21 @@ namespace MiPOSCSharpMySQL.Controlador
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
             Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
 
-            string consulta = "insert into cliente (nombres, telefono, direccion) values (@nombres, @telefono, @direccion);";
+            string consulta = "insert into cliente (nombres, appaterno, appmaterno) values (@nombres, @appaterno, @appmaterno);";
 
             try
             {
                 objetoCliente.Nombre = nombre.Text;
-                objetoCliente.Telefono = appaterno.Text;
-                objetoCliente.Direccion = apmaterno.Text;
+                objetoCliente.ApPaterno = appaterno.Text;
+                objetoCliente.ApMaterno = apmaterno.Text;
 
                 MySqlConnection conexion = objetoConexion.estableceConexion();
 
                 MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                 comando.Parameters.AddWithValue("@nombres", objetoCliente.Nombre);
-                comando.Parameters.AddWithValue("@telefono", objetoCliente.Telefono);
-                comando.Parameters.AddWithValue("@direccion", objetoCliente.Direccion);
+                comando.Parameters.AddWithValue("@appaterno", objetoCliente.ApPaterno);
+                comando.Parameters.AddWithValue("@appmaterno", objetoCliente.ApMaterno);
 
                 comando.ExecuteNonQuery();
 
@@ -128,14 +128,14 @@ namespace MiPOSCSharpMySQL.Controlador
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
             Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
 
-            string consulta = "UPDATE cliente SET cliente.nombres = @nombres, cliente.telefono = @telefono, cliente.direccion = @direccion where cliente.idCliente = @id ;";
+            string consulta = "UPDATE cliente SET cliente.nombres = @nombres, cliente.appaterno = @appaterno, cliente.appmaterno = @appmaterno where cliente.idcliente = @id ;";
 
             try
             {
                 objetoCliente.IdCliente = long.Parse(id.Text);
                 objetoCliente.Nombre = nombre.Text;
-                objetoCliente.Telefono = appaterno.Text;
-                objetoCliente.Direccion = apmaterno.Text;
+                objetoCliente.ApPaterno = appaterno.Text;
+                objetoCliente.ApMaterno = apmaterno.Text;
 
                 MySqlConnection conexion = objetoConexion.estableceConexion();
 
@@ -143,8 +143,8 @@ namespace MiPOSCSharpMySQL.Controlador
 
                 comando.Parameters.AddWithValue("@id", objetoCliente.IdCliente);
                 comando.Parameters.AddWithValue("@nombres", objetoCliente.Nombre);
-                comando.Parameters.AddWithValue("@telefono", objetoCliente.Telefono);
-                comando.Parameters.AddWithValue("@direccion", objetoCliente.Direccion);
+                comando.Parameters.AddWithValue("@appaterno", objetoCliente.ApPaterno);
+                comando.Parameters.AddWithValue("@appmaterno", objetoCliente.ApMaterno);
 
                 comando.ExecuteNonQuery();
 

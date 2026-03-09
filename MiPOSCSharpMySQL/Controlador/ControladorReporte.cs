@@ -166,7 +166,7 @@ namespace MiPOSCSharpMySQL.Controlador
         {
             Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
 
-            string consulta = "SELECT factura.idfactura, factura.fechaFactura, factura.metodoPago , cliente.nombres, cliente.telefono, cliente.direccion " +
+            string consulta = "SELECT factura.idfactura, factura.fechaFactura, factura.metodoPago , cliente.nombres, cliente.appaterno, cliente.appmaterno " +
                               "FROM factura INNER JOIN cliente ON cliente.idcliente = factura.fkCliente " +
                               "WHERE factura.idfactura = @idFactura;";
 
@@ -212,7 +212,7 @@ namespace MiPOSCSharpMySQL.Controlador
             DataTable dt = new DataTable();
             using (MySqlConnection con = objetoConexion.estableceConexion()) 
             {
-                string query = @"SELECT f.idFactura, c.nombres, c.telefono, c.direccion, p.nombre, d.cantidad, d.precioVenta, 
+                string query = @"SELECT f.idFactura, c.nombres, c.appaterno, c.appmaterno, p.nombre, d.cantidad, d.precioVenta, 
                             (SELECT SUM(d.cantidad * d.precioVenta) FROM detalle d WHERE d.fkFactura = f.idFactura) AS TotalFinal
                             FROM factura f
                             JOIN cliente c ON f.fkCliente = c.idCliente
@@ -277,7 +277,7 @@ namespace MiPOSCSharpMySQL.Controlador
 
                 // ---------- INFO FACTURA ----------
                 g.DrawString($"Factura: {datosFactura.Rows[0]["idFactura"]}", font, brush, 10, y); y += 15;
-                g.DrawString($"Cliente: {datosFactura.Rows[0]["nombres"]} {datosFactura.Rows[0]["telefono"]} {datosFactura.Rows[0]["direccion"]}", font, brush, 10, y); y += 15;
+                g.DrawString($"Cliente: {datosFactura.Rows[0]["nombres"]} {datosFactura.Rows[0]["appaterno"]} {datosFactura.Rows[0]["appmaterno"]}", font, brush, 10, y); y += 15;
                 g.DrawString($"Fecha: {DateTime.Now:dd/MM/yyyy HH:mm}", font, brush, 10, y); y += 20;
 
                 g.DrawLine(Pens.Black, 0, y, width, y); y += 10;

@@ -11,12 +11,12 @@ namespace MiPOSCSharpMySQL.Modelos
     {
         long idCliente;
         string nombre;
-        string telefono;
-        string direccion;
+        string apPaterno;
+        string apMaterno;
 
         public long IdCliente { get => idCliente; set => idCliente = value; }
         public string Nombre { get => nombre; set => nombre = value; }
-        public string Telefono { get => telefono; set => telefono = value; }
-        public string Direccion { get => direccion; set => direccion = value; }
+        public string ApPaterno { get => apPaterno; set => apPaterno = value; }
+        public string ApMaterno { get => apMaterno; set => apMaterno = value; }
     }
 }
