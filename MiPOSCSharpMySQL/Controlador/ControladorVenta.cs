@@ -126,8 +126,8 @@ namespace MiPOSCSharpMySQL.Controlador
 
             modelo.Columns.Add("Id", typeof(long));
             modelo.Columns.Add("Nombre", typeof(string));
-            modelo.Columns.Add("Ap.Paterno", typeof(string));
-            modelo.Columns.Add("Ap.Materno", typeof(string));
+            modelo.Columns.Add("Telefono", typeof(string));
+            modelo.Columns.Add("Direccion", typeof(string));
 
 
             tablaTotalClientes.DataSource = modelo;
@@ -160,10 +160,10 @@ namespace MiPOSCSharpMySQL.Controlador
                     {
                         objetoCliente.IdCliente = Convert.ToInt64(row["IdCliente"]);
                         objetoCliente.Nombre = row["nombres"].ToString();
-                        objetoCliente.ApPaterno = row["appaterno"].ToString();
-                        objetoCliente.ApMaterno = row["appmaterno"].ToString();
+                        objetoCliente.Telefono = row["telefono"].ToString();
+                        objetoCliente.Direccion = row["direccion"].ToString();
 
-                        modelo.Rows.Add(objetoCliente.IdCliente, objetoCliente.Nombre, objetoCliente.ApPaterno, objetoCliente.ApMaterno);
+                        modelo.Rows.Add(objetoCliente.IdCliente, objetoCliente.Nombre, objetoCliente.Telefono, objetoCliente.Direccion);
                     }
                     tablaTotalClientes.DataSource = modelo;
                 }
