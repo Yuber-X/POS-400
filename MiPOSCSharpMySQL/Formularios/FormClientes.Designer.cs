@@ -156,7 +156,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Ap.Materno:";
+            this.label4.Text = "Direccion:";
             // 
             // label3
             // 
@@ -166,7 +166,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Ap.Paterno:";
+            this.label3.Text = "Telefono:";
             // 
             // label2
             // 
