@@ -38,8 +38,8 @@ namespace MiPOSCSharpMySQL.Formularios
                 lblnumerofactura.Text = fila["idfactura"].ToString();
                 lblfechaventa.Text = fila["fechaFactura"].ToString();
                 lblnombres.Text = fila["nombres"].ToString();
-                lblappaterno.Text = fila["appaterno"].ToString();
-                lblapmaterno.Text = fila["appmaterno"].ToString();
+                lblappaterno.Text = fila["telefono"].ToString();
+                lblapmaterno.Text = fila["direccion"].ToString();
                 lblMetodoPago.Text = fila["metodoPago"].ToString();
             }
             else

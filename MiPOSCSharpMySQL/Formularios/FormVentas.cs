@@ -15,10 +15,12 @@ namespace MiPOSCSharpMySQL.Formularios
 {
     public partial class FormVentas : Form
     {
+      
         public FormVentas()
         {
             InitializeComponent();
 
+            
             txtIdCliente.ReadOnly = true;
             txtNombreCliente.ReadOnly = true;
             txtApPaterno.ReadOnly = true;

@@ -258,7 +258,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 16);
             this.label9.TabIndex = 3;
-            this.label9.Text = "Ap. Materno";
+            this.label9.Text = "Telefono";
             // 
             // label7
             // 
@@ -268,7 +268,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 16);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Ap. Paterno";
+            this.label7.Text = "Direccion";
             // 
             // label2
             // 
