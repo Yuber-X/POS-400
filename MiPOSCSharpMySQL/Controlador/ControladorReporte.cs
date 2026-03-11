@@ -96,6 +96,9 @@ namespace MiPOSCSharpMySQL.Controlador
             modelo.Columns.Add("Cantidad", typeof(int));
             modelo.Columns.Add("PrecioVenta", typeof(double));
             modelo.Columns.Add("Subtotal", typeof(double));
+            modelo.Columns.Add("Efectivo", typeof(string));  // ← nuevo
+            modelo.Columns.Add("Cambio", typeof(string));    // ← nuevo
+
 
 
             tablaVenta.DataSource = modelo;

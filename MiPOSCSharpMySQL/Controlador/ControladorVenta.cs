@@ -202,7 +202,8 @@ namespace MiPOSCSharpMySQL.Controlador
         public void LimpiarCamposVenta(TextBox BuscarCliente, DataGridView tablaCliente , TextBox buscarProducto, DataGridView tablaProducto, 
                                        TextBox selectIdCliente, TextBox selectNombreCliente, TextBox selectAppaterno, TextBox selectApmaterno,
                                        TextBox selectIdProducto, TextBox selectNombreP, TextBox selectPrecioP, TextBox selectStock, 
-                                       TextBox precioVentaFinal, TextBox cantidadVenta, DataGridView tablaResumen, Label iva, Label subTotalPagar, Label totalPagar){
+                                       TextBox precioVentaFinal, TextBox cantidadVenta,  DataGridView tablaResumen, Label iva, Label subTotalPagar, Label totalPagar, Label cambio)
+        {
             BuscarCliente.Text = "";
             tablaCliente.DataSource = null;
 
@@ -226,7 +227,8 @@ namespace MiPOSCSharpMySQL.Controlador
             iva.Text = "------------";
             subTotalPagar.Text = "------------";
             totalPagar.Text = "------------";
-
+            cambio.Text = "------------";
+            
         }
 
 
@@ -245,6 +247,7 @@ namespace MiPOSCSharpMySQL.Controlador
                     modelo.Columns.Add("Precio", typeof(double));
                     modelo.Columns.Add("Cantidad", typeof(int));
                     modelo.Columns.Add("Subtotal", typeof(double));
+                   
 
                     tablaResumen.DataSource = modelo;
                 }
@@ -288,7 +291,7 @@ namespace MiPOSCSharpMySQL.Controlador
                 MessageBox.Show("Error al mostrar Datos: " + e.ToString());
             }
         }
-        public void CalcularTotal(DataGridView tablaResumen, Label lblSubtotal, Label lblItbis, Label lblTotal)
+        public void CalcularTotal(DataGridView tablaResumen, Label lblSubtotal, Label lblItbis, Label lblTotal, TextBox txtBoxEfectivo, Label lbCambio)
         {
             double subtotal = 0;
             double tasaItbis = 0.18; 
@@ -312,6 +315,21 @@ namespace MiPOSCSharpMySQL.Controlador
             lblSubtotal.Text = subtotal.ToString("N", formato);
             lblItbis.Text = montoItbis.ToString("N", formato);
             lblTotal.Text = totalFinal.ToString("N", formato);
+
+            //calcular cambio
+            if (double.TryParse(txtBoxEfectivo.Text, out double efectivo))
+            {
+                double cambio = efectivo - totalFinal;
+                lbCambio.Text = cambio >= 0
+                    ? cambio.ToString("N", formato)
+                    : "Monto insuficiente";
+            }
+            else
+            {
+                lbCambio.Text = "0.00";
+            }
+
+
         }
         public void EliminarSeleccion(DataGridView tablaResumen)
         {

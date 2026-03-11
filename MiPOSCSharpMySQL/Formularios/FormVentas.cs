@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using MySql.Data.MySqlClient;
+using System.Linq.Expressions;
 
 
 namespace MiPOSCSharpMySQL.Formularios
@@ -19,8 +20,9 @@ namespace MiPOSCSharpMySQL.Formularios
         public FormVentas()
         {
             InitializeComponent();
-
-            
+            lbRD.Enabled = false;
+            txtBoxEfectivo.Enabled = false;
+            labelEfectivo.Enabled=false;
             txtIdCliente.ReadOnly = true;
             txtNombreCliente.ReadOnly = true;
             txtApPaterno.ReadOnly = true;
@@ -80,7 +82,7 @@ namespace MiPOSCSharpMySQL.Formularios
         {
             Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
             objetoVenta.PasarProductosVenta(dgvCarrito, txtIdProducto, txtNombreProducto, txtPrecioVentaFinal, txtStockVenta, txtStock);
-            objetoVenta.CalcularTotal(dgvCarrito, lbSubtotal, lbItbis, lbTotal);
+            objetoVenta.CalcularTotal(dgvCarrito, lbSubtotal, lbItbis, lbTotal, txtBoxEfectivo,lbCambio);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -102,6 +104,7 @@ namespace MiPOSCSharpMySQL.Formularios
                                  "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+           
 
             string pagoSeleccionado = metodoPago.CheckedItems[0].ToString();
 
@@ -120,7 +123,7 @@ namespace MiPOSCSharpMySQL.Formularios
             // Limpiamos la pantalla
             objetoVenta.LimpiarCamposVenta(txtBuscarCliente, dgvCliente, txtBuscarProducto, dgvProducto, txtIdCliente, txtNombreCliente,
                                             txtApPaterno, txtApMaterno, txtIdProducto, txtNombreProducto, txtPrecio, txtStock,
-                                            txtPrecioVentaFinal, txtStockVenta, dgvCarrito, lbItbis, lbSubtotal, lbTotal);
+                                            txtPrecioVentaFinal, txtStockVenta, dgvCarrito, lbItbis, lbSubtotal, lbTotal,lbCambio);
 
             // Mostramos la última factura generada
             objetoVenta.MostrarUltimaFactura(lbUltimaFactura);
@@ -214,6 +217,22 @@ namespace MiPOSCSharpMySQL.Formularios
 
         private void metodoPago_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            string item = metodoPago.Items[e.Index].ToString();
+            bool marcado = e.NewValue == CheckState.Checked;
+
+            if (item == "Efectivo")
+            {
+                txtBoxEfectivo.Enabled = marcado;
+                labelEfectivo.Enabled = marcado;
+                lbRD.Enabled = marcado;
+            }
+            else 
+            {
+                txtBoxEfectivo.Enabled = false;
+                labelEfectivo.Enabled = false;
+                lbRD.Enabled = false;
+            }
+
             // Desmarca todas las demás opciones cuando selecciona una
             for (int i = 0; i < metodoPago.Items.Count; i++)
             {
@@ -222,6 +241,16 @@ namespace MiPOSCSharpMySQL.Formularios
                     metodoPago.SetItemChecked(i, false);
                 }
             }
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

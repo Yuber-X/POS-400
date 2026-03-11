@@ -67,7 +67,7 @@ namespace MiPOSCSharpMySQL
             adminToolStripMenuItem.Enabled = false;
 
             // 2) Si es administrador, enciende todo y sal
-            if (rolLogueado == "Administrador")
+            if (rolLogueado == "ADMIN")
             {
                 SetAllMenuItemsEnabled(menuStrip1.Items, true);
                 return;
